@@ -1,11 +1,18 @@
 package program.ADT;
 
 public class Matrix {
-    int row;
-    int col;
+    public int row;
+    public int col;
+    public float[][] elmt;
 
-    Matrix(int row, int col) {
+    public Matrix(int row, int col) {
         this.row = row;
         this.col = col;
+        this.elmt = new float[row][col];
     }
+
+    public static Matrix create(int row, int col) {
+        return new Matrix(row, col);
+    }
+
 }
