@@ -1,4 +1,4 @@
-package program.constructors;
+package program.ADT.IO;
 
 import java.util.Scanner;
 
