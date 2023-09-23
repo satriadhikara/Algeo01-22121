@@ -1,6 +1,7 @@
 package program.ADT;
 
 public class Matrix {
+    // Konstruktor Matrix
     public int row;
     public int col;
     public float[][] elmt;
@@ -11,7 +12,7 @@ public class Matrix {
         this.elmt = new float[row][col];
     }
 
-    public static Matrix create(int row, int col) {
+    public static Matrix createMatrix(int row, int col) {
         return new Matrix(row, col);
     }
 

@@ -7,3 +7,41 @@
 3. 13522128 Mohammad Andhika Fadillah
 
 ## Deskripsi Program
+
+## Struktur Program
+
+```bash
+src
+|  README.md
+|
+|__program
+   |  Main.java
+   |
+   |__ADT
+   |  |  Matrix.java
+   |  |
+   |  |__IO
+   |  |    InputFile.java
+   |  |    InputTerminal.java
+   |  |    Output.java
+   |  |
+   |  |
+   |  |__primitives
+   |       OperasiAritmatika.java
+   |       OperasiIdentitas.java
+   |
+   |
+   |__operation
+        Cramer.java
+        Gauss.java
+        Gauss-Jordan.java
+        Invers.java
+```
+
+## Cara Menjalankan Program
+
+Dalam terminal directory utama:
+
+```bash
+ cd src ; javac -d ../bin ./program/\*.java ; cd.. ; cd bin ; java program.Main
+```

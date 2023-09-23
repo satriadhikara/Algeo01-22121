@@ -1,9 +1,9 @@
-package program.constructors;
+package program.ADT.IO;
 
 import program.ADT.Matrix;
 
-public class OutputTerminal {
-    public static void printMatrix(Matrix m) {
+public class Output {
+    public static void displayMatrix(Matrix m) {
         int i, j;
         for (i = 0; i < m.row; i++) {
             for (j = 0; j < m.col; j++) {
