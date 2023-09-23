@@ -1,18 +1,9 @@
-## Getting Started
+# Tugas Besar Aljabar Linier dan Geometri 1 - Kelompok JOJIKA
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## Anggota
 
-## Folder Structure
+1. 13522121 Jonathan Imanuel Saragih
+2. 13522125 Satriadhikara Panji Yudhistira
+3. 13522128 Mohammad Andhika Fadillah
 
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## Deskripsi Program
