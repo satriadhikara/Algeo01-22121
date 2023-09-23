@@ -7,7 +7,7 @@ import program.ADT.Matrix;
 public class InputTerminal {
     public static Scanner scan = new Scanner(System.in);
 
-    public static Matrix createMatrix(String[] args) {
+    public static Matrix createMatrix() {
         int row, col;
 
         row = scan.nextInt();
