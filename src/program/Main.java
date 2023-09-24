@@ -2,8 +2,9 @@ package program;
 
 import java.util.Scanner;
 
-// import program.ADT.Matrix;
+import program.ADT.Matrix;
 import program.ADT.IO.*;
+import program.SPL.*;
 
 public class Main {
     public static Scanner scan = new Scanner(System.in);
@@ -11,22 +12,32 @@ public class Main {
     public static Output output = new Output();
 
     public static void main(String[] args) {
-        System.out.println("---Menu Kalkulator SPL Matrix---");
-        System.out.println("1. Metode eliminasi Gauss");
-        System.out.println("2. Metode eliminasi Gauss-Jordan");
-        System.out.println("3. Metode matriks balikan (invers)");
-        System.out.println("4. Kaidah cramer");
-
+        Menu.MenuUtama();
         int pilihan;
         pilihan = scan.nextInt();
         switch (pilihan) {
             case 1:
+                Menu.MenuSPL();
+                pilihan = scan.nextInt();
+                switch (pilihan) {
+                    case 1:
+                        Matrix m = InputTerminal.createMatrix();
+                        Gauss.OBE_Gauss(m);
+                        Output.displayMatrix(m);
+                        break;
+                }
                 break;
             case 2:
                 break;
             case 3:
                 break;
             case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
                 break;
         }
 
