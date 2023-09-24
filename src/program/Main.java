@@ -17,19 +17,25 @@ public class Main {
         pilihan = scan.nextInt();
         switch (pilihan) {
             case 1:
-                Menu.MenuSPL();
+                Menu.SubMenu("SPL");
                 pilihan = scan.nextInt();
+                Matrix m;
                 switch (pilihan) {
                     case 1:
-                        Matrix m = InputTerminal.createMatrix();
+                        m = InputTerminal.createMatrix();
                         Gauss.OBE_Gauss(m);
                         Output.displayMatrix(m);
+                        break;
+                    case 2:
+                        m = InputTerminal.createMatrix();
                         break;
                 }
                 break;
             case 2:
+                Menu.SubMenu("Determinan");
                 break;
             case 3:
+                Menu.SubMenu("Balikan");
                 break;
             case 4:
                 break;

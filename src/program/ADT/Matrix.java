@@ -16,4 +16,7 @@ public class Matrix {
         return new Matrix(row, col);
     }
 
+    public int CountElmt() {
+        return (this.row * this.col);
+    }
 }
