@@ -44,6 +44,7 @@ public class Main {
             case 6:
                 break;
             case 7:
+                System.exit(0);
                 break;
         }
 
