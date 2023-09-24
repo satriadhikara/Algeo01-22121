@@ -28,6 +28,8 @@ public class Main {
                         break;
                     case 2:
                         m = InputTerminal.createMatrix();
+                        Gauss.OBE_GaussJordan(m);
+                        Output.displayMatrix(m);
                         break;
                 }
                 break;
