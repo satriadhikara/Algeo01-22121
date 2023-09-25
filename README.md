@@ -34,10 +34,16 @@ src
    |
    |
    |__SPL
-        Cramer.java
-        Gauss.java
-        Gauss-Jordan.java
-        Invers.java
+   |    Cramer.java
+   |    Gauss.java
+   |    Gauss-Jordan.java
+   |    Invers.java
+   |
+   |
+   |__Util
+        Menu.java
+        Settings.java
+
 ```
 
 ## Cara Menjalankan Program

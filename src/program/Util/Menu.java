@@ -1,4 +1,4 @@
-package program;
+package program.Util;
 
 import java.util.Scanner;
 
@@ -12,7 +12,7 @@ public class Menu {
     public static InputTerminal input = new InputTerminal();
 
     public static void MenuUtama() {
-        Main.clearScreen();
+        Settings.clearScreen();
         System.out.println("---Menu Kalkulator Matrix---");
         System.out.println("1. Sistem Persamaan Linier");
         System.out.println("2. Determinan");
@@ -52,7 +52,7 @@ public class Menu {
     }
 
     public static void SubMenu(String menu) {
-        Main.clearScreen();
+        Settings.clearScreen();
         switch (menu) {
             case "SPL":
                 System.out.println("---Menu SPL Matrix---");
