@@ -7,22 +7,34 @@ import program.ADT.Matrix;
 public class InputTerminal {
     public static Scanner scan = new Scanner(System.in);
 
-    public static Matrix createMatrix() {
+    public static Matrix SPL() {
         int row, col;
-
         row = scan.nextInt();
         col = scan.nextInt();
-        Matrix m = new Matrix(row, col);
-
+        Matrix m = Matrix.createMatrix(row, col);
         int i, j;
         for (i = 0; i < row; i++) {
             for (j = 0; j < col; j++) {
-                System.out.println("Elemen Matriks [" + i + "][" + j + "]");
-                float temp = scan.nextFloat();
+                double temp = scan.nextDouble();
                 m.elmt[i][j] = temp;
-                scan.nextLine();
             }
         }
+        scan.close();
+        return m;
+    }
+
+    public static Matrix Determinan() {
+        int n;
+        n = scan.nextInt();
+        Matrix m = Matrix.createMatrix(n, n);
+        int i, j;
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < n; j++) {
+                double temp = scan.nextDouble();
+                m.elmt[i][j] = temp;
+            }
+        }
+        scan.close();
         return m;
     }
 }

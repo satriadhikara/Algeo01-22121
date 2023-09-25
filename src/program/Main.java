@@ -9,7 +9,6 @@ import program.SPL.*;
 public class Main {
     public static Scanner scan = new Scanner(System.in);
     public static InputTerminal input = new InputTerminal();
-    public static Output output = new Output();
 
     public static void main(String[] args) {
         Menu.MenuUtama();
@@ -20,21 +19,17 @@ public class Main {
                 Menu.SubMenu("SPL");
                 pilihan = scan.nextInt();
                 Matrix m;
+                m = InputTerminal.SPL();
                 switch (pilihan) {
                     case 1:
-                        m = InputTerminal.createMatrix();
-                        Gauss.OBE_Gauss(m);
-                        Output.displayMatrix(m);
+                        Gauss.Solusi(m);
                         break;
                     case 2:
-                        m = InputTerminal.createMatrix();
-                        Gauss.OBE_GaussJordan(m);
-                        Output.displayMatrix(m);
+                        Gauss_Jordan.Solusi(m);
                         break;
                 }
                 break;
             case 2:
-                Menu.SubMenu("Determinan");
                 break;
             case 3:
                 Menu.SubMenu("Balikan");

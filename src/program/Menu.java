@@ -16,6 +16,11 @@ public class Menu {
         switch (menu) {
             case "SPL":
                 System.out.println("---Menu SPL Matrix---");
+                System.out.println("1. Metode eliminasi Gauss");
+                System.out.println("2. Metode eliminasi Gauss-Jordan");
+                System.out.println("3. Metode matriks balikan");
+                System.out.println("4. Kaidah cramer");
+                System.out.println("5. Kembali");
                 break;
             case "Determinan":
                 System.out.println("---Menu Determinan Matrix---");
@@ -24,10 +29,5 @@ public class Menu {
                 System.out.println("---Menu Matrix Balikan---");
                 break;
         }
-        System.out.println("1. Metode eliminasi Gauss");
-        System.out.println("2. Metode eliminasi Gauss-Jordan");
-        System.out.println("3. Metode matriks balikan");
-        System.out.println("4. Kaidah cramer");
-        System.out.println("5. Kembali");
     }
 }

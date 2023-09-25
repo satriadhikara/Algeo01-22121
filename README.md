@@ -29,9 +29,11 @@ src
    |  |__primitives
    |       OperasiAritmatika.java
    |       OperasiIdentitas.java
+   |       OperasiRelasional.java
+   |       Determinan.java
    |
    |
-   |__operation
+   |__SPL
         Cramer.java
         Gauss.java
         Gauss-Jordan.java
