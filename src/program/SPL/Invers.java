@@ -18,16 +18,18 @@ public class Invers{
                         p = k - 1;
                     }
                     mtemp.elmt[j - 1][p] = m.elmt[j][k];
+                    m.elmt[i][j] = Determinan.DeterminanCofactor(mtemp) ;
                 }
-            }
-        }
-
-        for (i = 0; i < m.row; i++){
-            for (j = 0; j < m.row; j++){
-                m.elmt[i][j] = Determinan.DeterminanCofactor(mtemp) ;
+            m.elmt[i][j] = Determinan.DeterminanCofactor(mtemp) ;
             }
         }
         return m ;
+    }
+
+    public static Matrix Adjoin(Matrix m){
+        int i,j ;
+        Matrix mtemp = Matrix.createMatrix(m.row, m.col);
+
     }
 }
     
