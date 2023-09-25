@@ -29,13 +29,21 @@ src
    |  |__primitives
    |       OperasiAritmatika.java
    |       OperasiIdentitas.java
+   |       OperasiRelasional.java
+   |       Determinan.java
    |
    |
-   |__operation
-        Cramer.java
-        Gauss.java
-        Gauss-Jordan.java
-        Invers.java
+   |__SPL
+   |    Cramer.java
+   |    Gauss.java
+   |    Gauss-Jordan.java
+   |    Invers.java
+   |
+   |
+   |__Util
+        Menu.java
+        Settings.java
+
 ```
 
 ## Cara Menjalankan Program
@@ -43,5 +51,5 @@ src
 Dalam terminal directory utama:
 
 ```bash
- cd src ; javac -d ../bin ./program/\*.java ; cd.. ; cd bin ; java program.Main
+cd src ; javac -d ../bin ./program/*.java ; cd .. ; java -cp bin program.Main
 ```
