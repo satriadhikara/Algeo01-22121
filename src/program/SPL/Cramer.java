@@ -1,24 +1,32 @@
 package program.SPL;
 
 import program.ADT.Matrix;
+import program.ADT.IO.Output;
 import program.ADT.primitives.Determinan;
 
 public class Cramer {
-    public static Matrix cramer(Matrix m) {
+    public static Matrix Perhitungan(Matrix m) {
         int i, j;
         Matrix cramer = Matrix.createMatrix(m.row, 1);
-        float D = Determinan.Determinant(m);
+        double D = Determinan.DeterminanCofactor(m);
         for (i = 0; i < m.row; i++) {
-            Matrix m1 = Matrix.createMatrix(m.row, m.row); // Membuat matrix sementara untuk mencari determinan tiap
-                                                           // variabel
+            Matrix temp = Matrix.createMatrix(m.row, m.row);
             for (j = 0; j < m.row; j++) {
-                m1.elmt[j][i] = m.elmt[j][m.col - 1];
+                for (int k = 0; k < m.row; k++) {
+                    temp.elmt[j][k] = m.elmt[j][k];
+                }
             }
-
-            cramer.elmt[i][0] = Determinan.Determinant(m1) / D;
+            for (j = 0; j < m.row; j++) {
+                temp.elmt[j][i] = m.elmt[j][m.col - 1];
+            }
+            cramer.elmt[i][0] = Determinan.DeterminanCofactor(temp) / D;
         }
         return cramer;
+    }
 
+    public static void Solusi(Matrix m) {
+        m = Perhitungan(m);
+        Output.displayMatrix(m);
     }
 
 }

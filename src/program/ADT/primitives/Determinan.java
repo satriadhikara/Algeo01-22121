@@ -3,21 +3,21 @@ package program.ADT.primitives;
 import program.ADT.Matrix;
 
 public class Determinan {
-    public static float Determinant(Matrix m) {
+    public static double DeterminanCofactor(Matrix m) {
         int i, j, k, p, var = 1;
 
-        float det;
+        double det;
         if (m.CountElmt() == 1) {
-            det = (float) m.elmt[0][0];
+            det = (double) m.elmt[0][0];
         } else if (m.CountElmt() == 4) {
             det = (m.elmt[0][0] * m.elmt[1][1]) - (m.elmt[1][0] * m.elmt[0][1]);
-            det = (float) (det);
+            det = (double) (det);
         } else {
-            Matrix mFac = Matrix.createMatrix(m.row, m.row);
+            Matrix mFac = Matrix.createMatrix(m.row - 1, m.row - 1);
             det = 0;
             for (i = 0; i < m.row; i++) {
                 for (j = 1; j < m.row; j++) {
-                    for (k = 0; k < m.col; k++) {
+                    for (k = 0; k < m.row; k++) {
                         if (k == i) {
                             continue;
                         } else if (k < i) {
@@ -28,7 +28,7 @@ public class Determinan {
                         mFac.elmt[j - 1][p] = m.elmt[j][k];
                     }
                 }
-                det += var * m.elmt[0][i] * Determinant(mFac);
+                det += var * m.elmt[0][i] * DeterminanCofactor(mFac);
                 var *= -1;
             }
         }

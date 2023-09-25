@@ -4,8 +4,10 @@ import java.util.Scanner;
 
 import program.ADT.Matrix;
 import program.ADT.IO.InputTerminal;
+import program.ADT.primitives.Determinan;
 import program.SPL.Gauss;
 import program.SPL.Gauss_Jordan;
+import program.SPL.Cramer;
 
 public class Menu {
     public static Scanner scan = new Scanner(System.in);
@@ -30,6 +32,7 @@ public class Menu {
                     Menu.SubMenu("SPL");
                     break;
                 case 2:
+                    SubMenu("Determinan");
                     break;
                 case 3:
                     Menu.SubMenu("Balikan");
@@ -78,6 +81,8 @@ public class Menu {
                         case 3:
                             break;
                         case 4:
+                            m = InputTerminal.SPL();
+                            Cramer.Solusi(m);
                             break;
                         case 5:
                             System.out.println("Kembali ke Menu Utama...");
@@ -91,6 +96,8 @@ public class Menu {
                 break;
             case "Determinan":
                 System.out.println("---Menu Determinan Matrix---");
+                m = InputTerminal.Determinan();
+                System.out.println(Determinan.DeterminanCofactor(m));
                 break;
             case "Balikan":
                 System.out.println("---Menu Matrix Balikan---");
