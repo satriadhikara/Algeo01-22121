@@ -2,8 +2,6 @@ package program.ADT.primitives;
 
 import program.ADT.Matrix;
 
-// Buat dhika
-
 public class OperasiAritmatika {
     public static Matrix Penjumlahan(Matrix m1, Matrix m2) {
         int i, j;
@@ -66,5 +64,6 @@ public class OperasiAritmatika {
         }
         return m;
     }
+
 
 }
