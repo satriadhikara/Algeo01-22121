@@ -48,7 +48,7 @@ public class Menu {
                     System.out.println("Pilihan tidak valid!");
                     break;
             }
-        } while (pilihan != 7);
+        } while (pilihan > 7 && pilihan < 1);
     }
 
     public static void SubMenu(String menu) {
@@ -87,7 +87,7 @@ public class Menu {
                             System.out.println("Pilihan tidak valid!");
                             break;
                     }
-                } while (pilihan != 5);
+                } while (pilihan > 5 && pilihan < 1);
                 break;
             case "Determinan":
                 System.out.println("---Menu Determinan Matrix---");
