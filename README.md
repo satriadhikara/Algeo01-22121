@@ -45,5 +45,5 @@ src
 Dalam terminal directory utama:
 
 ```bash
- cd src ; javac -d ../bin ./program/\*.java ; cd.. ; cd bin ; java program.Main
+cd src ; javac -d ../bin ./program/*.java ; cd .. ; java -cp bin program.Main
 ```
