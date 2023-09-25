@@ -2,6 +2,7 @@ package program.SPL;
 
 import program.ADT.Matrix;
 import program.ADT.primitives.Determinan;
+import program.ADT.primitives.OperasiAritmatika;
 import program.ADT.primitives.OperasiIdentitas;
 
 
@@ -50,7 +51,18 @@ public class Invers{
             }
         }
         return mInv ;
+    }
 
+    public static Matrix Solusi(Matrix m){
+        int i ;
+        Matrix mInv = Invers.Invers(m) ;
+        Matrix mSum = Matrix.createMatrix(1, 1);
+        Matrix mB = Matrix.createMatrix(m.row, 1);
+        for (i = 0 ; i < m.col ; i++){
+                mB.elmt[i][0] = m.elmt[i][m.col-1];
+        }
+        mSum = OperasiAritmatika.Perkalian(mInv, mB);
+        return mSum;
 
     }
 }
