@@ -2,6 +2,7 @@ package program.SPL;
 
 import program.ADT.Matrix;
 import program.ADT.IO.Output;
+import program.Util.Settings;
 
 public class Gauss {
     public static void OBE(Matrix m) {
@@ -23,9 +24,28 @@ public class Gauss {
         }
     }
 
+    public static Matrix X(Matrix m) {
+        // I.S. Matrix m sudah di OBE
+        Matrix mx = Matrix.createMatrix(1, m.row);
+        for (int i = m.row - 1; i >= 0; i--) {
+            mx.elmt[0][i] = m.elmt[i][m.col - 1];
+            for (int j = m.row - 1; j > i; j--) {
+                mx.elmt[0][i] -= (mx.elmt[0][j] * m.elmt[i][j]);
+            }
+        }
+        return mx;
+    }
+
     public static void Solusi(Matrix m) {
+        Settings.clearScreen();
+        System.out.println("Sistem Persamaan Linier dengan Metode Gauss");
+        Output.displayMatrix(m);
+        System.out.println("|");
+        System.out.println("|");
+        System.out.println("v");
         OBE(m);
         Output.displayMatrix(m);
+        System.out.println();
         boolean solusiBanyak = true;
         for (int i = 0; i < m.col; i++) {
             if (m.elmt[m.row - 1][i] != 0) {
@@ -35,12 +55,20 @@ public class Gauss {
         }
         if (!solusiBanyak) {
             if (m.elmt[m.row - 1][m.col - 2] == 0) {
-                System.out.println("SPL tidak mempunyai solusi");
+                System.out.println("SPL tersebut tidak mempunyai solusi");
             } else {
-                System.out.println("SPL mempunyai solusi unik/tunggal");
+                System.out.println("SPL tersebut mempunyai solusi unik/tunggal yaitu");
+                Matrix mx = X(m);
+                for (int i = 0; i < mx.col; i++) {
+                    if (i == mx.col - 1) {
+                        System.out.print("x" + (i + 1) + ": " + mx.elmt[0][i]);
+                    } else {
+                        System.out.print("x" + (i + 1) + ": " + mx.elmt[0][i] + ", ");
+                    }
+                }
             }
         } else {
-            System.out.println("SPL mempunyai banyak solusi");
+            System.out.println("SPL tersebut mempunyai banyak solusi");
         }
     }
 }
