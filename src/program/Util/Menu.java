@@ -4,9 +4,11 @@ import java.util.Scanner;
 
 import program.ADT.Matrix;
 import program.ADT.IO.InputTerminal;
+import program.ADT.IO.Output;
 import program.ADT.primitives.Determinan;
 import program.SPL.Gauss;
 import program.SPL.Gauss_Jordan;
+import program.SPL.Invers;
 import program.SPL.Cramer;
 
 public class Menu {
@@ -79,6 +81,9 @@ public class Menu {
                             Gauss_Jordan.Solusi(m);
                             break;
                         case 3:
+                            m = InputTerminal.SPL();
+                            m = Invers.Solusi(m);
+                            Output.displayMatrix(m);
                             break;
                         case 4:
                             m = InputTerminal.SPL();

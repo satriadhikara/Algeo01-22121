@@ -5,8 +5,7 @@ import program.ADT.primitives.Determinan;
 import program.ADT.primitives.OperasiAritmatika;
 import program.ADT.primitives.OperasiIdentitas;
 
-
-public class Invers{
+public class Invers {
     public static Matrix Cofactor(Matrix m) {
         Matrix mCof = Matrix.createMatrix(m.row, m.col - 1);
         for (int i = 0; i < m.row; i++) {
@@ -34,37 +33,35 @@ public class Invers{
         return mCof;
     }
 
-    public static Matrix Invers(Matrix m) {
+    public static Matrix Inver(Matrix m) {
         Matrix mCof = Invers.Cofactor(m);
-        Matrix mInv = OperasiIdentitas.Transpose(mCof) ;
-        double det = Determinan.DeterminanCofactor(m) ;
+        Matrix mInv = OperasiIdentitas.Transpose(mCof);
+        double det = Determinan.DeterminanCofactor(m);
 
-        int i,j ;
-        
+        int i, j;
+
         if (det == 0) {
-            System.out.println("Matriks tidak memiliki invers"); 
+            System.out.println("Matriks tidak memiliki invers");
         }
 
-        for (i = 0 ; i < mInv.row ; i++){
-            for (j = 0 ; j < mInv.col ; j++){
-               mInv.elmt[i][j] /= det ;  
+        for (i = 0; i < mInv.row; i++) {
+            for (j = 0; j < mInv.col; j++) {
+                mInv.elmt[i][j] /= det;
             }
         }
-        return mInv ;
+        return mInv;
     }
 
-    public static Matrix Solusi(Matrix m){
-        int i ;
-        Matrix mInv = Invers.Invers(m) ;
-        Matrix mSum = Matrix.createMatrix(1, 1);
+    public static Matrix Solusi(Matrix m) {
+        int i;
+        Matrix mInv = Invers.Inver(m);
+        Matrix mSum = Matrix.createMatrix(m.row, 1);
         Matrix mB = Matrix.createMatrix(m.row, 1);
-        for (i = 0 ; i < m.col ; i++){
-                mB.elmt[i][0] = m.elmt[i][m.col-1];
+        for (i = 0; i < m.row; i++) {
+            mB.elmt[i][0] = m.elmt[i][m.col - 1];
         }
         mSum = OperasiAritmatika.Perkalian(mInv, mB);
         return mSum;
 
     }
 }
-
-    
