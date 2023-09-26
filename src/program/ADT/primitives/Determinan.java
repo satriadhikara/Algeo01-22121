@@ -36,27 +36,35 @@ public class Determinan {
     }
 
     public static double DeterminanOBE(Matrix m) {
-        int x, y, z;
-        for (x = 0; x < m.row; x++) {
-            if (x != m.row - 1) {
-                for (y = x + 1; y < m.row; y++) {
-                    double temp = m.elmt[y][x];
-                    for (z = x; z < m.col; z++) {
-                        m.elmt[y][z] = m.elmt[y][z] - (temp * m.elmt[x][z]);
+        int i, j, k;
+        double konstanta; // konstanta pembuat 0 (biar gabingung aja heheee)
+        for (i = 0; i < m.row; i++) {
+            for (j = i + 1; j < m.row; j++) {
+                if (m.elmt[i][i] == 0) {
+                    return 0;
+                } else {
+                    konstanta = m.elmt[j][i] / m.elmt[i][i];
+                    for (k = 0; k < m.row; k++) {
+                        m.elmt[j][k] -= m.elmt[i][k] * konstanta;
                     }
                 }
             }
         }
+
         double det = 0;
         if (m.CountElmt() > 4) {
             det = 1;
-            for (x = 0; x < m.row; x++) {
+            for (int x = 0; x < m.row; x++) {
                 det *= m.elmt[x][x];
             }
         } else if (m.CountElmt() == 4) {
             det = (m.elmt[0][0] * m.elmt[1][1]) - (m.elmt[1][0] * m.elmt[0][1]);
         } else if (m.CountElmt() == 1) {
             det = m.elmt[0][0];
+        }
+
+        if (det == -0) {
+            det = 0;
         }
         return det;
     }
