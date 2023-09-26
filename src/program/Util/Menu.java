@@ -3,13 +3,9 @@ package program.Util;
 import java.util.Scanner;
 
 import program.ADT.Matrix;
-import program.ADT.IO.InputTerminal;
-import program.ADT.IO.Output;
-import program.ADT.primitives.Determinan;
-import program.SPL.Gauss;
-import program.SPL.Gauss_Jordan;
-import program.SPL.Invers;
-import program.SPL.Cramer;
+import program.ADT.IO.*;
+import program.SPL.*;
+import program.Polinom.Interpolasi;
 
 public class Menu {
     public static Scanner scan = new Scanner(System.in);
@@ -40,6 +36,7 @@ public class Menu {
                     Menu.SubMenu("Balikan");
                     break;
                 case 4:
+                    Menu.SubMenu("Interpolasi");
                     break;
                 case 5:
                     break;
@@ -57,6 +54,8 @@ public class Menu {
     }
 
     public static void SubMenu(String menu) {
+        int pilihan;
+        Matrix m;
         Settings.clearScreen();
         switch (menu) {
             case "SPL":
@@ -66,8 +65,6 @@ public class Menu {
                 System.out.println("3. Metode matriks balikan");
                 System.out.println("4. Kaidah cramer");
                 System.out.println("5. Kembali");
-                int pilihan;
-                Matrix m;
                 do {
                     System.out.print("Pilihan: ");
                     pilihan = scan.nextInt();
@@ -101,11 +98,58 @@ public class Menu {
                 break;
             case "Determinan":
                 System.out.println("---Menu Determinan Matrix---");
-                m = InputTerminal.Determinan();
-                System.out.println(Determinan.DeterminanCofactor(m));
+                System.out.println("1. Metode OBE Perkalian diagonal");
+                System.out.println("2. Metode Ekspansi Kofaktor");
+                System.out.println("3. Kembali");
+                do {
+                    System.out.print("Pilihan: ");
+                    pilihan = scan.nextInt();
+                    switch (pilihan) {
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            System.out.println("Kembali ke Menu Utama...");
+                            MenuUtama();
+                            break;
+                        default:
+                            System.out.println("Pilihan tidak valid!");
+                            break;
+                    }
+                } while (pilihan > 3 && pilihan < 1);
                 break;
             case "Balikan":
                 System.out.println("---Menu Matrix Balikan---");
+                System.out.println("1. Metode OBE Gauss-Jordan Identitas");
+                System.out.println("2. Metode 1/det * Adj");
+                System.out.println("3. Kembali");
+                do {
+                    System.out.print("Pilihan: ");
+                    pilihan = scan.nextInt();
+                    switch (pilihan) {
+                        case 1:
+                            break;
+                        case 2:
+                            m = InputTerminal.Square();
+                            m = Invers.InversB(m);
+                            Output.displayMatrix(m);
+                            break;
+                        case 3:
+                            System.out.println("Kembali ke Menu Utama...");
+                            MenuUtama();
+                            break;
+                        default:
+                            System.out.println("Pilihan tidak valid!");
+                            break;
+                    }
+                } while (pilihan > 3 && pilihan < 1);
+                break;
+            case "Interpolasi":
+                Settings.clearScreen();
+                System.out.println("---Polinom Interpolasi---");
+                m = InputTerminal.Interpolasi();
+                Interpolasi.Solusi(m);
                 break;
         }
     }

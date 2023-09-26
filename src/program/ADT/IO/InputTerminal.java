@@ -23,7 +23,7 @@ public class InputTerminal {
         return m;
     }
 
-    public static Matrix Determinan() {
+    public static Matrix Square() {
         int n;
         n = scan.nextInt();
         Matrix m = Matrix.createMatrix(n, n);
@@ -35,6 +35,20 @@ public class InputTerminal {
             }
         }
         scan.close();
+        return m;
+    }
+
+    public static Matrix Interpolasi() {
+        int n;
+        n = scan.nextInt();
+        Matrix m = Matrix.createMatrix(n, 2);
+        int i, j;
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < 2; j++) {
+                double temp = scan.nextDouble();
+                m.elmt[i][j] = temp;
+            }
+        }
         return m;
     }
 }

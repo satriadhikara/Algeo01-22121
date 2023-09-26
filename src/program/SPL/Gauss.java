@@ -23,6 +23,18 @@ public class Gauss {
         }
     }
 
+    public static Matrix X(Matrix m) {
+        // I.S. Matrix m sudah di OBE
+        Matrix mx = Matrix.createMatrix(1, m.row);
+        for (int i = m.row - 1; i >= 0; i--) {
+            mx.elmt[0][i] = m.elmt[i][m.col - 1];
+            for (int j = m.row - 1; j > i; j--) {
+                mx.elmt[0][i] -= (mx.elmt[0][j] * m.elmt[i][j]);
+            }
+        }
+        return mx;
+    }
+
     public static void Solusi(Matrix m) {
         OBE(m);
         Output.displayMatrix(m);
@@ -37,7 +49,15 @@ public class Gauss {
             if (m.elmt[m.row - 1][m.col - 2] == 0) {
                 System.out.println("SPL tidak mempunyai solusi");
             } else {
-                System.out.println("SPL mempunyai solusi unik/tunggal");
+                System.out.println("SPL mempunyai solusi unik/tunggal yaitu");
+                Matrix mx = X(m);
+                for (int i = 0; i < mx.col; i++) {
+                    if (i == mx.col - 1) {
+                        System.out.print("x" + (i + 1) + ": " + String.format("%.4f", mx.elmt[0][i]));
+                    } else {
+                        System.out.print("x" + (i + 1) + ": " + String.format("%.4f", mx.elmt[0][i]) + ", ");
+                    }
+                }
             }
         } else {
             System.out.println("SPL mempunyai banyak solusi");

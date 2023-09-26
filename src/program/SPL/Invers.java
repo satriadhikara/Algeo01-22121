@@ -33,7 +33,7 @@ public class Invers {
         return mCof;
     }
 
-    public static Matrix Inver(Matrix m) {
+    public static Matrix InversB(Matrix m) {
         Matrix mCof = Invers.Cofactor(m);
         Matrix mInv = OperasiIdentitas.Transpose(mCof);
         double det = Determinan.DeterminanCofactor(m);
@@ -54,7 +54,7 @@ public class Invers {
 
     public static Matrix Solusi(Matrix m) {
         int i;
-        Matrix mInv = Invers.Inver(m);
+        Matrix mInv = Invers.InversB(m);
         Matrix mSum = Matrix.createMatrix(m.row, 1);
         Matrix mB = Matrix.createMatrix(m.row, 1);
         for (i = 0; i < m.row; i++) {
