@@ -7,12 +7,12 @@ import program.Util.Settings;
 public class Gauss_Jordan {
     public static void OBE(Matrix m) {
         Gauss.OBE(m);
-        for (int i = 0; i < m.row; i++) {
-            for (int j = 0; j < i; j++) {
-                for (int k = 0; k < m.col; k++) {
-                    m.elmt[j][k] -= (m.elmt[j][k] * m.elmt[i][k]);
+        for (int i = m.row - 1; i >= 0; i--) {
+            for (int j = i - 1; j >= 0; j--) {
+                double temp = m.elmt[j][i];
+                for (int k = i; k < m.col; k++) {
+                    m.elmt[j][k] -= (temp * m.elmt[i][k]);
                 }
-
             }
         }
     }

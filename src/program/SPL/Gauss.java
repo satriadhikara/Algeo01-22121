@@ -61,6 +61,7 @@ public class Gauss {
             }
         } else {
             System.out.println("SPL mempunyai banyak solusi");
+
         }
     }
 }

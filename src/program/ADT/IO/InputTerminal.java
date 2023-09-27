@@ -7,7 +7,14 @@ import program.ADT.Matrix;
 public class InputTerminal {
     public static Scanner scan = new Scanner(System.in);
 
-    public static Matrix SPL() {
+    public static Matrix Augmented() {
+        System.out.println("Silahkan input matrix augmented");
+        System.out.println("      //Contoh");
+        System.out.println("2 3   //n x m Matriks");
+        System.out.println("1 2 5");
+        System.out.println("3 4 5");
+        System.out.println("-------------------------------");
+
         int row, col;
         row = scan.nextInt();
         col = scan.nextInt();
@@ -24,6 +31,13 @@ public class InputTerminal {
     }
 
     public static Matrix Square() {
+        System.out.println("Silahkan input matrix");
+        System.out.println("    //Contoh");
+        System.out.println("2   //n x n Matriks");
+        System.out.println("1 2");
+        System.out.println("3 4");
+        System.out.println("--------------------");
+
         int n;
         n = scan.nextInt();
         Matrix m = Matrix.createMatrix(n, n);

@@ -4,8 +4,10 @@ import java.util.Scanner;
 
 import program.ADT.Matrix;
 import program.ADT.IO.*;
+import program.ADT.primitives.Determinan;
+import program.Interpolasi.Bicubic;
+import program.Interpolasi.Polinom;
 import program.SPL.*;
-import program.Polinom.Interpolasi;
 
 public class Menu {
     public static Scanner scan = new Scanner(System.in);
@@ -39,6 +41,7 @@ public class Menu {
                     Menu.SubMenu("Interpolasi");
                     break;
                 case 5:
+                    Menu.SubMenu("Bicubic");
                     break;
                 case 6:
                     break;
@@ -50,7 +53,7 @@ public class Menu {
                     System.out.println("Pilihan tidak valid!");
                     break;
             }
-        } while (pilihan > 7 && pilihan < 1);
+        } while (pilihan > 7 || pilihan < 1);
     }
 
     public static void SubMenu(String menu) {
@@ -70,20 +73,21 @@ public class Menu {
                     pilihan = scan.nextInt();
                     switch (pilihan) {
                         case 1:
-                            m = InputTerminal.SPL();
+                            m = InputTerminal.Augmented();
                             Gauss.Solusi(m);
                             break;
                         case 2:
-                            m = InputTerminal.SPL();
-                            Gauss_Jordan.Solusi(m);
+                            m = InputTerminal.Augmented();
+                            Gauss_Jordan.OBE(m);
+                            Output.displayMatrix(m);
                             break;
                         case 3:
-                            m = InputTerminal.SPL();
+                            m = InputTerminal.Augmented();
                             m = Invers.Solusi(m);
                             Output.displayMatrix(m);
                             break;
                         case 4:
-                            m = InputTerminal.SPL();
+                            m = InputTerminal.Augmented();
                             Cramer.Solusi(m);
                             break;
                         case 5:
@@ -94,7 +98,7 @@ public class Menu {
                             System.out.println("Pilihan tidak valid!");
                             break;
                     }
-                } while (pilihan > 5 && pilihan < 1);
+                } while (pilihan > 5 || pilihan < 1);
                 break;
             case "Determinan":
                 System.out.println("---Menu Determinan Matrix---");
@@ -106,8 +110,12 @@ public class Menu {
                     pilihan = scan.nextInt();
                     switch (pilihan) {
                         case 1:
+                            m = InputTerminal.Square();
+                            System.out.println(Determinan.DeterminanOBE(m));
                             break;
                         case 2:
+                            m = InputTerminal.Square();
+                            System.out.println(Determinan.DeterminanCofactor(m));
                             break;
                         case 3:
                             System.out.println("Kembali ke Menu Utama...");
@@ -117,7 +125,7 @@ public class Menu {
                             System.out.println("Pilihan tidak valid!");
                             break;
                     }
-                } while (pilihan > 3 && pilihan < 1);
+                } while (pilihan > 3 || pilihan < 1);
                 break;
             case "Balikan":
                 System.out.println("---Menu Matrix Balikan---");
@@ -143,14 +151,21 @@ public class Menu {
                             System.out.println("Pilihan tidak valid!");
                             break;
                     }
-                } while (pilihan > 3 && pilihan < 1);
+                } while (pilihan > 3 || pilihan < 1);
                 break;
             case "Interpolasi":
                 Settings.clearScreen();
                 System.out.println("---Polinom Interpolasi---");
                 m = InputTerminal.Interpolasi();
-                Interpolasi.Solusi(m);
+                Polinom.Solusi(m);
                 break;
+            case "Bicubic":
+                Settings.clearScreen();
+                System.out.println("---Bikubik Spline Interpolasi---");
+                m = InputTerminal.Interpolasi();
+                Bicubic.Solusi(m);
+                break;
+
         }
     }
 }
