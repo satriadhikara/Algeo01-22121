@@ -78,8 +78,7 @@ public class Menu {
                             break;
                         case 2:
                             m = InputTerminal.Augmented();
-                            Gauss_Jordan.OBE(m);
-                            Output.displayMatrix(m);
+                            Gauss_Jordan.Solusi(m);
                             break;
                         case 3:
                             m = InputTerminal.Augmented();

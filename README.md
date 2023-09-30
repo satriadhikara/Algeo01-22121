@@ -40,6 +40,11 @@ src
    |    Invers.java
    |
    |
+   |__Interpolasi
+   |    Polinom.java
+   |    Bicubic.java
+   |
+   |
    |__Util
         Menu.java
         Settings.java

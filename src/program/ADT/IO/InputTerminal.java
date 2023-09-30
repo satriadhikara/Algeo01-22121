@@ -55,7 +55,7 @@ public class InputTerminal {
     public static Matrix Interpolasi() {
         int n;
         n = scan.nextInt();
-        Matrix m = Matrix.createMatrix(n, 2);
+        Matrix m = Matrix.createMatrix(n + 1, 2);
         int i, j;
         for (i = 0; i < n; i++) {
             for (j = 0; j < 2; j++) {
@@ -63,6 +63,7 @@ public class InputTerminal {
                 m.elmt[i][j] = temp;
             }
         }
+        m.elmt[i][0] = scan.nextDouble();
         return m;
     }
 }
