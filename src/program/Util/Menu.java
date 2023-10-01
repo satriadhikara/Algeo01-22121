@@ -11,7 +11,20 @@ import program.SPL.*;
 
 public class Menu {
     public static Scanner scan = new Scanner(System.in);
-    public static InputTerminal input = new InputTerminal();
+    public static Terminal input = new Terminal();
+
+    public static int Input() {
+        Settings.clearScreen();
+        System.out.println("-----Menu Pilihan Input-----");
+        System.out.println("1. Input File (.txt)");
+        System.out.println("2. Input terminal (keyboard)");
+        int pilihan;
+        do {
+            System.out.print("Pilihan: ");
+            pilihan = scan.nextInt();
+        } while (pilihan < 1 && pilihan > 2);
+        return pilihan;
+    }
 
     public static void MenuUtama() {
         Settings.clearScreen();
@@ -71,22 +84,42 @@ public class Menu {
                 do {
                     System.out.print("Pilihan: ");
                     pilihan = scan.nextInt();
+                    int pil;
                     switch (pilihan) {
                         case 1:
-                            m = InputTerminal.Augmented();
+                            pil = Input();
+                            if (pil == 1) {
+                                m = FileTXT.Augmented();
+                            } else {
+                                m = Terminal.Augmented();
+                            }
                             Gauss.Solusi(m);
                             break;
                         case 2:
-                            m = InputTerminal.Augmented();
+                            pil = Input();
+                            if (pil == 1) {
+                                m = FileTXT.Augmented();
+                            } else {
+                                m = Terminal.Augmented();
+                            }
                             Gauss_Jordan.Solusi(m);
                             break;
                         case 3:
-                            m = InputTerminal.Augmented();
+                            pil = Input();
+                            if (pil == 1) {
+                                m = FileTXT.Augmented();
+                            } else {
+                                m = Terminal.Augmented();
+                            }
                             m = Invers.Solusi(m);
-                            Output.displayMatrix(m);
                             break;
                         case 4:
-                            m = InputTerminal.Augmented();
+                            pil = Input();
+                            if (pil == 1) {
+                                m = FileTXT.Augmented();
+                            } else {
+                                m = Terminal.Augmented();
+                            }
                             Cramer.Solusi(m);
                             break;
                         case 5:
@@ -107,13 +140,24 @@ public class Menu {
                 do {
                     System.out.print("Pilihan: ");
                     pilihan = scan.nextInt();
+                    int pil;
                     switch (pilihan) {
                         case 1:
-                            m = InputTerminal.Square();
+                            pil = Input();
+                            if (pil == 1) {
+                                m = FileTXT.Square();
+                            } else {
+                                m = Terminal.Square();
+                            }
                             System.out.println(Determinan.DeterminanOBE(m));
                             break;
                         case 2:
-                            m = InputTerminal.Square();
+                            pil = Input();
+                            if (pil == 1) {
+                                m = FileTXT.Square();
+                            } else {
+                                m = Terminal.Square();
+                            }
                             System.out.println(Determinan.DeterminanCofactor(m));
                             break;
                         case 3:
@@ -134,11 +178,23 @@ public class Menu {
                 do {
                     System.out.print("Pilihan: ");
                     pilihan = scan.nextInt();
+                    int pil;
                     switch (pilihan) {
                         case 1:
+                            pil = Input();
+                            if (pil == 1) {
+                                m = FileTXT.Square();
+                            } else {
+                                m = Terminal.Square();
+                            }
                             break;
                         case 2:
-                            m = InputTerminal.Square();
+                            pil = Input();
+                            if (pil == 1) {
+                                m = FileTXT.Square();
+                            } else {
+                                m = Terminal.Square();
+                            }
                             m = Invers.InversB(m);
                             Output.displayMatrix(m);
                             break;
@@ -153,15 +209,20 @@ public class Menu {
                 } while (pilihan > 3 || pilihan < 1);
                 break;
             case "Interpolasi":
+                int pilInput = Input();
                 Settings.clearScreen();
                 System.out.println("---Polinom Interpolasi---");
-                m = InputTerminal.Interpolasi();
+                if (pilInput == 1) {
+                    m = FileTXT.Interpolasi();
+                } else {
+                    m = Terminal.Interpolasi();
+                }
                 Polinom.Solusi(m);
                 break;
             case "Bicubic":
                 Settings.clearScreen();
                 System.out.println("---Bikubik Spline Interpolasi---");
-                m = InputTerminal.Interpolasi();
+                m = Terminal.Interpolasi();
                 Bicubic.Solusi(m);
                 break;
 

@@ -2,6 +2,7 @@ package program.SPL;
 
 import program.ADT.Matrix;
 import program.ADT.IO.Output;
+import program.Util.Settings;
 
 public class Gauss {
     public static void OBE(Matrix m) {
@@ -36,8 +37,15 @@ public class Gauss {
     }
 
     public static void Solusi(Matrix m) {
+        Settings.clearScreen();
+        System.out.println("Sistem Persamaan Linier dengan Metode Gauss");
+        Output.displayMatrix(m);
+        System.out.println("|");
+        System.out.println("|");
+        System.out.println("v");
         OBE(m);
         Output.displayMatrix(m);
+        System.out.println();
         boolean solusiBanyak = true;
         for (int i = 0; i < m.col; i++) {
             if (m.elmt[m.row - 1][i] != 0) {

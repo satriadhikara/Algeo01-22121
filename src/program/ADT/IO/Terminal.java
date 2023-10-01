@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import program.ADT.Matrix;
 
-public class InputTerminal {
+public class Terminal {
     public static Scanner scan = new Scanner(System.in);
 
     public static Matrix Augmented() {
@@ -53,6 +53,13 @@ public class InputTerminal {
     }
 
     public static Matrix Interpolasi() {
+        System.out.println("Silahkan input titik");
+        System.out.println("      //Contoh");
+        System.out.println("2     //dua titik (x,y)");
+        System.out.println("8 2.07");
+        System.out.println("9 2.19");
+        System.out.println("8.3   // x taksiran");
+        System.out.println("--------------------");
         int n;
         n = scan.nextInt();
         Matrix m = Matrix.createMatrix(n + 1, 2);
