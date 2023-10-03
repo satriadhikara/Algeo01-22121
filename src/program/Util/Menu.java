@@ -5,8 +5,10 @@ import java.util.Scanner;
 import program.ADT.Matrix;
 import program.ADT.IO.*;
 import program.ADT.primitives.Determinan;
+import program.ADT.primitives.OperasiIdentitas;
 import program.Interpolasi.Bicubic;
 import program.Interpolasi.Polinom;
+import program.Interpolasi.Regresi;
 import program.SPL.*;
 
 public class Menu {
@@ -57,6 +59,8 @@ public class Menu {
                     Menu.SubMenu("Bicubic");
                     break;
                 case 6:
+                    Matrix m = InputTerminal.Regresi() ;
+                    Regresi.Solusi(m) ;
                     break;
                 case 7:
                     System.out.println("Keluar dari program...");
@@ -225,6 +229,8 @@ public class Menu {
                 m = Terminal.Interpolasi();
                 Bicubic.Solusi(m);
                 break;
+                
+            
 
         }
     }

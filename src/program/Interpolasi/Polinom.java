@@ -41,4 +41,5 @@ public class Polinom {
         }
         System.out.println(("f(" + (m.elmt[m.row - 1][0]) + ") = " + String.format("%.4f", hasil)));
     }
+    
 }

@@ -52,6 +52,71 @@ public class Invers {
         return mInv;
     }
 
+    public static Matrix InversA(Matrix m) {
+        int i,j,k,l,n ;
+        Matrix mSum = Matrix.createMatrix(m.row,(m.row*2));
+        Matrix mSum2 = Matrix.createMatrix(m.row,m.col-1);
+
+        for (i = 0 ; i < m.row ; i++) {
+            for (j = 0 ; j < m.row ; j++){
+                mSum.elmt[i][j] = m.elmt[i][j] ;
+            }
+        }
+        
+       for (i = 0 ; i < m.row ;i++){
+            for(j = m.row ; j < mSum.col ; j++ ){
+                if (i + 3 == j){
+                    mSum.elmt[i][j] = 1;
+                }else{
+                    mSum.elmt[i][j] = 0 ;
+                }
+            }
+       }
+
+        for (k = 0; k < mSum.row; k++) {
+            if (mSum.elmt[k][k] != 1 && mSum.elmt[k][k] != 0) {
+                double temp = mSum.elmt[k][k];
+                for (l = k; l < mSum.col; l++) {
+                    mSum.elmt[k][l] /= temp;
+                }
+                
+            }
+            if (k != mSum.row - 1) {
+                for (l = k + 1; l < mSum.row; l++) {
+                    double temp = mSum.elmt[l][k];
+                    for ( n = k; n < mSum.col; n++) {
+                        mSum.elmt[l][n] = mSum.elmt[l][n] - (temp * mSum.elmt[k][n]);
+                        }
+                    }
+                }
+            
+        }
+
+       
+
+        for (i = m.row - 1; i >= 0; i--) {
+            for (j = i - 1; j >= 0; j--) {
+                double temp = m.elmt[j][i];
+                for (k = i; k < m.col; k++) {
+                    m.elmt[j][k] -= (temp * m.elmt[i][k]);
+                }
+            }
+        }
+    
+        for (i = 0 ; i < mSum2.row ; i++){
+            for (j = 0 ; j < mSum2.col ; j++){
+                mSum2.elmt[i][j] = mSum.elmt[i][j+mSum2.col] ;
+            }
+        }
+        return mSum2 ;
+    }
+
+    // public static void tes(){
+    //     Matrix m = InputTerminal.SPL() ;
+    //     m = InversA(m) ;
+    //     Output.displayMatrix(m);
+    // }
+
     public static Matrix Solusi(Matrix m) {
         int i;
         Matrix mInv = Invers.InversB(m);
