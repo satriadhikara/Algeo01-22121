@@ -4,6 +4,8 @@ import program.ADT.Matrix;
 import program.ADT.primitives.Determinan;
 import program.ADT.primitives.OperasiAritmatika;
 import program.ADT.primitives.OperasiIdentitas;
+import program.ADT.IO.InputTerminal;
+import program.ADT.IO.Output;
 
 public class Invers {
     public static Matrix Cofactor(Matrix m) {
@@ -53,9 +55,9 @@ public class Invers {
     }
 
     public static Matrix InversA(Matrix m) {
-        int i,j,k,l,n ;
+        int i,j,k;
         Matrix mSum = Matrix.createMatrix(m.row,(m.row*2));
-        Matrix mSum2 = Matrix.createMatrix(m.row,m.col-1);
+        Matrix mSum2 = Matrix.createMatrix(m.row,m.col);
 
         for (i = 0 ; i < m.row ; i++) {
             for (j = 0 ; j < m.row ; j++){
@@ -73,32 +75,28 @@ public class Invers {
             }
        }
 
-        for (k = 0; k < mSum.row; k++) {
-            if (mSum.elmt[k][k] != 1 && mSum.elmt[k][k] != 0) {
-                double temp = mSum.elmt[k][k];
-                for (l = k; l < mSum.col; l++) {
-                    mSum.elmt[k][l] /= temp;
-                }
-                
+       for (i = 0; i < mSum.row; i++) {
+        if (mSum.elmt[i][i] != 1 && mSum.elmt[i][i] != 0) {
+            double temp = mSum.elmt[i][i];
+            for (j = i; j < mSum.col; j++) {
+                mSum.elmt[i][j] /= temp;
             }
-            if (k != mSum.row - 1) {
-                for (l = k + 1; l < mSum.row; l++) {
-                    double temp = mSum.elmt[l][k];
-                    for ( n = k; n < mSum.col; n++) {
-                        mSum.elmt[l][n] = mSum.elmt[l][n] - (temp * mSum.elmt[k][n]);
-                        }
-                    }
-                }
-            
         }
+        if (i != mSum.row - 1) {
+            for (j = i + 1; j < mSum.row; j++) {
+                double temp = mSum.elmt[j][i];
+                for (k = i; k < mSum.col; k++) {
+                    mSum.elmt[j][k] = mSum.elmt[j][k] - (temp * mSum.elmt[i][k]);
+                }
+            }
+        }
+    }
 
-       
-
-        for (i = m.row - 1; i >= 0; i--) {
+        for (i = mSum.row - 1; i >= 0; i--) {
             for (j = i - 1; j >= 0; j--) {
-                double temp = m.elmt[j][i];
-                for (k = i; k < m.col; k++) {
-                    m.elmt[j][k] -= (temp * m.elmt[i][k]);
+                double temp = mSum.elmt[j][i];
+                for (k = i; k < mSum.col; k++) {
+                    mSum.elmt[j][k] -= (temp * mSum.elmt[i][k]);
                 }
             }
         }
@@ -108,25 +106,27 @@ public class Invers {
                 mSum2.elmt[i][j] = mSum.elmt[i][j+mSum2.col] ;
             }
         }
+        Output.displayMatrix(mSum);
         return mSum2 ;
+        
     }
 
-    // public static void tes(){
-    //     Matrix m = InputTerminal.SPL() ;
-    //     m = InversA(m) ;
-    //     Output.displayMatrix(m);
+    public static void tes(){
+        Matrix m = InputTerminal.Augmented();
+        m = InversA(m);
+        Output.displayMatrix(m);
+    }
+
+    // public static Matrix Solusi(Matrix m) {
+    //     int i;
+    //     Matrix mInv = Invers.InversB(m);
+    //     Matrix mSum = Matrix.createMatrix(m.row, 1);
+    //     Matrix mB = Matrix.createMatrix(m.row, 1);
+    //     for (i = 0; i < m.row; i++) {
+    //         mB.elmt[i][0] = m.elmt[i][m.col - 1];
+    //     }
+    //     mSum = OperasiAritmatika.Perkalian(mInv, mB);
+    //     return mSum;
+
     // }
-
-    public static Matrix Solusi(Matrix m) {
-        int i;
-        Matrix mInv = Invers.InversB(m);
-        Matrix mSum = Matrix.createMatrix(m.row, 1);
-        Matrix mB = Matrix.createMatrix(m.row, 1);
-        for (i = 0; i < m.row; i++) {
-            mB.elmt[i][0] = m.elmt[i][m.col - 1];
-        }
-        mSum = OperasiAritmatika.Perkalian(mInv, mB);
-        return mSum;
-
-    }
 }
