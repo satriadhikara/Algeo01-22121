@@ -1,7 +1,9 @@
 package program.SPL;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import program.ADT.Matrix;
+import program.ADT.IO.Output;
 
 public class Parametrik {
     public static void Solusi(Matrix m) {
@@ -80,10 +82,22 @@ public class Parametrik {
             arrhasil[idxarrhasil] = arrhasilpar[i];
             idxarrhasil++;
         }
-
+        String output = "";
+        DecimalFormat df = new DecimalFormat("#.####");
         for (int i = 0; i < arrhasil.length; i++) {
-            System.out.println(arrhasil[i]);
+            if (arrhasil[i] != "") {
+                if (i == arrhasil.length - 1) {
+                    output += df.format(arrhasil[i]);
+                    System.out.print(df.format(arrhasil[i]));
+
+                } else {
+                    output += df.format(arrhasil[i]) + ", ";
+                    System.out.print(df.format(arrhasil[i]) + ", ");
+                }
+            }
         }
+        System.out.println();
+        Output.Save(output);
     }
 
 }

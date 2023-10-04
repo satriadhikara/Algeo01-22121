@@ -67,12 +67,15 @@ public class Gauss {
         Output.displayMatrix(m);
         System.out.println();
         String output = "";
-        boolean solusiBanyak = true;
-        for (int i = 0; i < m.col; i++) {
-            if (m.elmt[m.row - 1][i] != 0) {
-                solusiBanyak = false;
+        boolean solusiBanyak = false;
+        for (int i = 0; i < m.row; i++) {
+            if (m.elmt[i][i] != 1) {
+                solusiBanyak = true;
                 break;
             }
+        }
+        if (m.row != m.col - 1) {
+            solusiBanyak = true;
         }
         if (!solusiBanyak) {
             if (m.elmt[m.row - 1][m.col - 2] == 0) {
@@ -90,12 +93,11 @@ public class Gauss {
                     }
                 }
             }
+            System.out.println();
+            Output.Save(output);
         } else {
-            output += "SPL mempunyai banyak solusi";
-            System.out.println("SPL mempunyai banyak solusi");
-
+            Parametrik.Solusi(m);
         }
-        System.out.println();
-        Output.Save(output);
+
     }
 }
