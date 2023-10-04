@@ -7,18 +7,30 @@ import program.Util.Settings;
 public class Gauss {
     public static void OBE(Matrix m) {
         for (int i = 0; i < m.row; i++) {
-            if (m.elmt[i][i] != 1 && m.elmt[i][i] != 0) {
-                double temp = m.elmt[i][i];
-                for (int j = i; j < m.col; j++) {
-                    m.elmt[i][j] /= temp;
+            // Find pivot row
+            int pivotRow = i;
+            for (int j = i + 1; j < m.row; j++) {
+                if (Math.abs(m.elmt[j][i]) > Math.abs(m.elmt[pivotRow][i])) {
+                    pivotRow = j;
                 }
             }
-            if (i != m.row - 1) {
-                for (int j = i + 1; j < m.row; j++) {
-                    double temp = m.elmt[j][i];
-                    for (int k = i; k < m.col; k++) {
-                        m.elmt[j][k] = m.elmt[j][k] - (temp * m.elmt[i][k]);
-                    }
+
+            // Swap rows
+            double[] temp = m.elmt[i];
+            m.elmt[i] = m.elmt[pivotRow];
+            m.elmt[pivotRow] = temp;
+
+            if (m.elmt[i][i] != 1 && m.elmt[i][i] != 0) {
+                double temps = m.elmt[i][i];
+                for (int j = i; j < m.col; j++) {
+                    m.elmt[i][j] /= temps;
+                }
+            }
+            // Eliminate
+            for (int j = i + 1; j < m.row; j++) {
+                double factor = m.elmt[j][i] / m.elmt[i][i];
+                for (int k = i; k < m.col; k++) {
+                    m.elmt[j][k] -= factor * m.elmt[i][k];
                 }
             }
         }
@@ -38,14 +50,10 @@ public class Gauss {
 
     public static void Solusi(Matrix m) {
         Settings.clearScreen();
-        System.out.println("Sistem Persamaan Linier dengan Metode Gauss");
-        Output.displayMatrix(m);
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("v");
+        System.out.println("---Sistem Persamaan Linier dengan Metode Gauss---");
         OBE(m);
-        Output.displayMatrix(m);
         System.out.println();
+        String output = "";
         boolean solusiBanyak = true;
         for (int i = 0; i < m.col; i++) {
             if (m.elmt[m.row - 1][i] != 0) {
@@ -55,21 +63,26 @@ public class Gauss {
         }
         if (!solusiBanyak) {
             if (m.elmt[m.row - 1][m.col - 2] == 0) {
+                output += "SPL tidak mempunyai solusi";
                 System.out.println("SPL tidak mempunyai solusi");
             } else {
-                System.out.println("SPL mempunyai solusi unik/tunggal yaitu");
                 Matrix mx = X(m);
                 for (int i = 0; i < mx.col; i++) {
                     if (i == mx.col - 1) {
+                        output += "x" + (i + 1) + ": " + String.format("%.4f", mx.elmt[0][i]);
                         System.out.print("x" + (i + 1) + ": " + String.format("%.4f", mx.elmt[0][i]));
                     } else {
+                        output += "x" + (i + 1) + ": " + String.format("%.4f", mx.elmt[0][i]) + ", ";
                         System.out.print("x" + (i + 1) + ": " + String.format("%.4f", mx.elmt[0][i]) + ", ");
                     }
                 }
             }
         } else {
+            output += "SPL mempunyai banyak solusi";
             System.out.println("SPL mempunyai banyak solusi");
 
         }
+        System.out.println();
+        Output.Save(output);
     }
 }

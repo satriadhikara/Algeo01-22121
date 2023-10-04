@@ -5,7 +5,6 @@ import java.util.Scanner;
 import program.ADT.Matrix;
 import program.ADT.IO.*;
 import program.ADT.primitives.Determinan;
-import program.ADT.primitives.OperasiIdentitas;
 import program.Interpolasi.Bicubic;
 import program.Interpolasi.Polinom;
 import program.Interpolasi.Regresi;
@@ -59,8 +58,6 @@ public class Menu {
                     Menu.SubMenu("Bicubic");
                     break;
                 case 6:
-                    Matrix m = InputTerminal.Regresi() ;
-                    Regresi.Solusi(m) ;
                     break;
                 case 7:
                     System.out.println("Keluar dari program...");
@@ -98,6 +95,8 @@ public class Menu {
                                 m = Terminal.Augmented();
                             }
                             Gauss.Solusi(m);
+                            scan.nextLine();
+                            Back();
                             break;
                         case 2:
                             pil = Input();
@@ -107,6 +106,8 @@ public class Menu {
                                 m = Terminal.Augmented();
                             }
                             Gauss_Jordan.Solusi(m);
+                            scan.nextLine();
+                            Back();
                             break;
                         case 3:
                             pil = Input();
@@ -116,6 +117,9 @@ public class Menu {
                                 m = Terminal.Augmented();
                             }
                             m = Invers.Solusi(m);
+                            Output.displayMatrix(m);
+                            scan.nextLine();
+                            Back();
                             break;
                         case 4:
                             pil = Input();
@@ -125,6 +129,8 @@ public class Menu {
                                 m = Terminal.Augmented();
                             }
                             Cramer.Solusi(m);
+                            scan.nextLine();
+                            Back();
                             break;
                         case 5:
                             System.out.println("Kembali ke Menu Utama...");
@@ -153,7 +159,11 @@ public class Menu {
                             } else {
                                 m = Terminal.Square();
                             }
-                            System.out.println(Determinan.DeterminanOBE(m));
+                            Settings.clearScreen();
+                            System.out.println("---Determinan Matrix---");
+                            Determinan.Solusi(m, 1);
+                            scan.nextLine();
+                            Back();
                             break;
                         case 2:
                             pil = Input();
@@ -162,7 +172,11 @@ public class Menu {
                             } else {
                                 m = Terminal.Square();
                             }
-                            System.out.println(Determinan.DeterminanCofactor(m));
+                            Settings.clearScreen();
+                            System.out.println("---Determinan Matrix---");
+                            Determinan.Solusi(m, 2);
+                            scan.nextLine();
+                            Back();
                             break;
                         case 3:
                             System.out.println("Kembali ke Menu Utama...");
@@ -191,6 +205,11 @@ public class Menu {
                             } else {
                                 m = Terminal.Square();
                             }
+                            Settings.clearScreen();
+                            System.out.println("---Matrix Balikan---");
+                            Invers.Output(m, 1);
+                            scan.nextLine();
+                            Back();
                             break;
                         case 2:
                             pil = Input();
@@ -199,8 +218,11 @@ public class Menu {
                             } else {
                                 m = Terminal.Square();
                             }
-                            m = Invers.InversB(m);
-                            Output.displayMatrix(m);
+                            Settings.clearScreen();
+                            System.out.println("---Matrix Balikan---");
+                            Invers.Output(m, 2);
+                            scan.nextLine();
+                            Back();
                             break;
                         case 3:
                             System.out.println("Kembali ke Menu Utama...");
@@ -222,16 +244,35 @@ public class Menu {
                     m = Terminal.Interpolasi();
                 }
                 Polinom.Solusi(m);
+                scan.nextLine();
+                Back();
                 break;
             case "Bicubic":
                 Settings.clearScreen();
                 System.out.println("---Bikubik Spline Interpolasi---");
-                m = Terminal.Interpolasi();
-                Bicubic.Solusi(m);
+                m = Terminal.Square();
+                double x = scan.nextInt();
+                double y = scan.nextInt();
+                System.out.println(Bicubic.bicubic(m, x, y));
+                scan.nextLine();
+                Back();
                 break;
-                
-            
-
+            case "Regresi":
+                Settings.clearScreen();
+                System.out.println("---Regresi Linier---");
+                m = Terminal.Regresi();
+                Regresi.Solusi(m);
+                scan.nextLine();
+                Back();
+                break;
         }
+    }
+
+    public static void Back() {
+        System.out.println("\n");
+        System.out.println("Ketik enter untuk kembali ke menu.");
+        String pil = scan.nextLine();
+        System.out.println(pil);
+        MenuUtama();
     }
 }

@@ -12,18 +12,19 @@ public class FileTXT {
             Scanner scan = new Scanner(System.in);
             System.out.print("Masukkan nama file (.txt): ");
             String namaFile = scan.nextLine();
-            scan.close();
             File file = new File("test\\" + namaFile + ".txt");
             Scanner fileReader = new Scanner(file);
             Scanner tempfile = new Scanner(file);
 
             // Cari baris dan kolom
+            String templines = "";
             while (tempfile.hasNextLine()) {
-                tempfile.nextLine();
+                templines = tempfile.nextLine();
                 row++;
             }
+            String[] templine = templines.split(" ");
+            col = templine.length;
             tempfile.close();
-            col = row + 1;
             Matrix m = Matrix.createMatrix(row, col);
             int i = 0;
             while (fileReader.hasNextLine()) {
@@ -48,7 +49,6 @@ public class FileTXT {
             Scanner scan = new Scanner(System.in);
             System.out.print("Masukkan nama file (.txt): ");
             String namaFile = scan.nextLine();
-            scan.close();
             File file = new File("test\\" + namaFile + ".txt");
             Scanner fileReader = new Scanner(file);
             Scanner tempfile = new Scanner(file);
@@ -84,7 +84,6 @@ public class FileTXT {
             Scanner scan = new Scanner(System.in);
             System.out.print("Masukkan nama file (.txt): ");
             String namaFile = scan.nextLine();
-            scan.close();
             File file = new File("test\\" + namaFile + ".txt");
             Scanner fileReader = new Scanner(file);
             Scanner tempfile = new Scanner(file);

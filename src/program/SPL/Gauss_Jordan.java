@@ -32,12 +32,7 @@ public class Gauss_Jordan {
     public static void Solusi(Matrix m) {
         Settings.clearScreen();
         System.out.println("Sistem Persamaan Linier dengan Metode Gauss-Jordan");
-        Output.displayMatrix(m);
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("v");
         OBE(m);
-        Output.displayMatrix(m);
         System.out.println();
         boolean solusiBanyak = true;
         for (int i = 0; i < m.col; i++) {
@@ -46,22 +41,28 @@ public class Gauss_Jordan {
                 break;
             }
         }
+        String output = "";
         if (!solusiBanyak) {
             if (m.elmt[m.row - 1][m.col - 2] == 0) {
+                output += "SPL tersebut tidak mempunyai solusi";
                 System.out.println("SPL tersebut tidak mempunyai solusi");
             } else {
-                System.out.println("SPL tersebut mempunyai solusi unik/tunggal yaitu");
                 Matrix mx = X(m);
                 for (int i = 0; i < mx.col; i++) {
                     if (i == mx.col - 1) {
-                        System.out.print("x" + (i + 1) + ": " + mx.elmt[0][i]);
+                        output += "x" + (i + 1) + ": " + String.format("%.4f", mx.elmt[0][i]);
+                        System.out.print("x" + (i + 1) + ": " + String.format("%.4f", mx.elmt[0][i]));
                     } else {
-                        System.out.print("x" + (i + 1) + ": " + mx.elmt[0][i] + ", ");
+                        output += "x" + (i + 1) + ": " + String.format("%.4f", mx.elmt[0][i]) + ", ";
+                        System.out.print("x" + (i + 1) + ": " + String.format("%.4f", mx.elmt[0][i]) + ", ");
                     }
                 }
             }
         } else {
+            output += "SPL tersebut mempunyai banyak solusi";
             System.out.println("SPL tersebut mempunyai banyak solusi");
         }
+        System.out.println();
+        Output.Save(output);
     }
 }

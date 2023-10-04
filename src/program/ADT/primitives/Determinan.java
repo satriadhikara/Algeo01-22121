@@ -1,6 +1,7 @@
 package program.ADT.primitives;
 
 import program.ADT.Matrix;
+import program.ADT.IO.Output;
 
 public class Determinan {
     public static double DeterminanCofactor(Matrix m) {
@@ -67,5 +68,19 @@ public class Determinan {
             det = 0;
         }
         return det;
+    }
+
+    public static void Solusi(Matrix m, int metode) {
+        double det;
+        if (metode == 2) {
+            det = DeterminanCofactor(m);
+        } else {
+            det = DeterminanOBE(m);
+        }
+        System.out.println();
+        String output = "";
+        System.out.println("Det: " + det);
+        output += ("Det: " + String.valueOf(det));
+        Output.Save(output);
     }
 }

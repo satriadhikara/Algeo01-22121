@@ -1,6 +1,7 @@
 package program.Interpolasi;
 
 import program.ADT.Matrix;
+import program.ADT.IO.Output;
 import program.SPL.Gauss;
 
 import java.lang.Math;
@@ -27,12 +28,15 @@ public class Polinom {
         Matrix mb = Fungsi(m);
         Gauss.OBE(mb);
         mb = Gauss.X(mb);
+        String output = "f(x) = ";
         System.out.print("f(x) = ");
         for (int i = mb.col - 1; i >= 0; i--) {
             if (i == 0) {
                 System.out.print(String.format("%.4f", mb.elmt[0][i]) + ", ");
+                output += String.format("%.4f", mb.elmt[0][i]) + ", ";
             } else {
                 System.out.print(String.format("%.4f", mb.elmt[0][i]) + "x^" + i + " + ");
+                output += String.format("%.4f", mb.elmt[0][i]) + "x^" + i + " + ";
             }
         }
         double hasil = 0;
@@ -40,6 +44,7 @@ public class Polinom {
             hasil += m.elmt[m.row - 1][0] * mb.elmt[0][j];
         }
         System.out.println(("f(" + (m.elmt[m.row - 1][0]) + ") = " + String.format("%.4f", hasil)));
+        output += ("f(" + (m.elmt[m.row - 1][0]) + ") = " + String.format("%.4f", hasil));
+        Output.Save(output);
     }
-    
 }

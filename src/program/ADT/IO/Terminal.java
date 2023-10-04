@@ -26,7 +26,6 @@ public class Terminal {
                 m.elmt[i][j] = temp;
             }
         }
-        scan.close();
         return m;
     }
 
@@ -48,7 +47,6 @@ public class Terminal {
                 m.elmt[i][j] = temp;
             }
         }
-        scan.close();
         return m;
     }
 
@@ -71,6 +69,29 @@ public class Terminal {
             }
         }
         m.elmt[i][0] = scan.nextDouble();
+        return m;
+    }
+
+    public static Matrix Regresi() {
+        int n, s, i, j, k;
+
+        System.out.print("Masukkan jumlah variable peubah X : ");
+        n = scan.nextInt(); // Jumlah peubah X
+
+        System.out.print("Masukkan jumlah titik yang ingin dimasukkan: ");
+        s = scan.nextInt(); // Jumlah sampel
+
+        Matrix m = Matrix.createMatrix(s + 1, n + 1); // (n+1), karena ada inputan buat "y" juga
+
+        for (i = 0; i < m.row - 1; i++) {
+            for (j = 0; j < m.col; j++) {
+                double temp = scan.nextDouble();
+                m.elmt[i][j] = temp;
+            }
+        }
+        for (k = 0; k < n; k++) {
+            m.elmt[i][k] = scan.nextDouble();
+        }
         return m;
     }
 }
