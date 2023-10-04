@@ -147,4 +147,47 @@ public class FileTXT {
             return null;
         }
     }
+
+    public static Matrix Regresi() {
+        try {
+            int row = 0, col = 0;
+            Scanner scan = new Scanner(System.in);
+            System.out.print("Masukkan nama file (.txt): ");
+            String namaFile = scan.nextLine();
+            File file = new File("test\\" + namaFile + ".txt");
+            Scanner fileReader = new Scanner(file);
+            Scanner tempfile = new Scanner(file);
+
+            // Cari baris dan kolom
+            String templines = "";
+            while (tempfile.hasNextLine()) {
+                templines = tempfile.nextLine();
+                row++;
+            }
+            String[] templine = templines.split(" ");
+            col = templine.length + 1;
+            tempfile.close();
+            Matrix m = Matrix.createMatrix(row, col);
+            int i = 0;
+            while (fileReader.hasNextLine()) {
+                String lines = fileReader.nextLine();
+                String[] line = lines.split(" ");
+                if (line.length == m.col - 1) {
+                    for (int j = 0; j < m.col - 1; j++) {
+                        m.elmt[i][j] = Double.parseDouble(line[j]);
+                    }
+                } else {
+                    for (int j = 0; j < m.col; j++) {
+                        m.elmt[i][j] = Double.parseDouble(line[j]);
+                    }
+                }
+                i++;
+            }
+            fileReader.close();
+            return m;
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
 }

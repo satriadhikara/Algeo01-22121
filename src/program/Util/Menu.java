@@ -116,8 +116,7 @@ public class Menu {
                             } else {
                                 m = Terminal.Augmented();
                             }
-                            m = Invers.Solusi(m);
-                            Output.displayMatrix(m);
+                            Invers.Solusi(m);
                             scan.nextLine();
                             Back();
                             break;
@@ -236,26 +235,27 @@ public class Menu {
                 break;
             case "Interpolasi":
                 int pilInput = Input();
-                Settings.clearScreen();
-                System.out.println("---Polinom Interpolasi---");
                 if (pilInput == 1) {
                     m = FileTXT.Interpolasi();
                 } else {
                     m = Terminal.Interpolasi();
                 }
+                Settings.clearScreen();
+                System.out.println("---Polinom Interpolasi---");
+                System.out.println();
                 Polinom.Solusi(m);
                 scan.nextLine();
                 Back();
                 break;
             case "Bicubic":
                 pilInput = Input();
-                Settings.clearScreen();
-                System.out.println("---Bikubik Spline Interpolasi---");
                 if (pilInput == 1) {
                     m = FileTXT.Bicubic();
                 } else {
                     m = Terminal.Bicubic();
                 }
+                Settings.clearScreen();
+                System.out.println("---Bikubik Spline Interpolasi---");
                 System.out.println();
                 String output = "f(" + m.elmt[m.row - 1][0] + "," + m.elmt[m.row - 1][1] + ") = "
                         + Bicubic.bicubic(m, m.elmt[m.row - 1][0], m.elmt[m.row - 1][1]);
@@ -267,9 +267,14 @@ public class Menu {
                 Back();
                 break;
             case "Regresi":
+                pilInput = Input();
+                if (pilInput == 1) {
+                    m = FileTXT.Regresi();
+                } else {
+                    m = Terminal.Regresi();
+                }
                 Settings.clearScreen();
                 System.out.println("---Regresi Linier---");
-                m = Terminal.Regresi();
                 Regresi.Solusi(m);
                 scan.nextLine();
                 Back();

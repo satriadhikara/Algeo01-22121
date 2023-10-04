@@ -1,27 +1,20 @@
 package program.SPL;
 
+import java.text.DecimalFormat;
+
 import program.ADT.Matrix;
 import program.ADT.IO.Output;
 import program.ADT.primitives.OperasiIdentitas;
 import program.Util.Settings;
 
 public class Gauss {
-    public static boolean IsNol(Matrix m, int idx) {
-        for (int i = 0; i < m.col; i++) {
-            if (m.elmt[idx][i] != 0) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public static void OBE(Matrix m) {
         int pivot = 0;
         for (int i = 0; i < m.row; i++) {
             if (pivot == m.col - 1) {
                 break;
             }
-            if (IsNol(m, i) && i != m.row - 1) {
+            if (OperasiIdentitas.IsNol(m, i) && i != m.row - 1) {
                 OperasiIdentitas.TukerRow(m, i, i + 1);
             } else if (m.elmt[i][pivot] == 0 && i != m.row - 1) {
                 int temprow = i + 1;
@@ -67,9 +60,11 @@ public class Gauss {
     }
 
     public static void Solusi(Matrix m) {
+        DecimalFormat df = new DecimalFormat("#.####");
         Settings.clearScreen();
         System.out.println("---Sistem Persamaan Linier dengan Metode Gauss---");
         OBE(m);
+        Output.displayMatrix(m);
         System.out.println();
         String output = "";
         boolean solusiBanyak = true;
@@ -87,11 +82,11 @@ public class Gauss {
                 Matrix mx = X(m);
                 for (int i = 0; i < mx.col; i++) {
                     if (i == mx.col - 1) {
-                        output += "x" + (i + 1) + ": " + String.format("%.4f", mx.elmt[0][i]);
-                        System.out.print("x" + (i + 1) + ": " + String.format("%.4f", mx.elmt[0][i]));
+                        output += "x" + (i + 1) + ": " + df.format(mx.elmt[0][i]);
+                        System.out.print("x" + (i + 1) + ": " + df.format(mx.elmt[0][i]));
                     } else {
-                        output += "x" + (i + 1) + ": " + String.format("%.4f", mx.elmt[0][i]) + ", ";
-                        System.out.print("x" + (i + 1) + ": " + String.format("%.4f", mx.elmt[0][i]) + ", ");
+                        output += "x" + (i + 1) + ": " + df.format(mx.elmt[0][i]) + ", ";
+                        System.out.print("x" + (i + 1) + ": " + df.format(mx.elmt[0][i]) + ", ");
                     }
                 }
             }

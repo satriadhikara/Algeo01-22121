@@ -3,6 +3,14 @@ package program.ADT.primitives;
 import program.ADT.Matrix;
 
 public class OperasiIdentitas {
+    public static boolean IsNol(Matrix m, int idx) {
+        for (int i = 0; i < m.col; i++) {
+            if (m.elmt[idx][i] != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     public static Matrix Transpose(Matrix m) {
         Matrix m1;

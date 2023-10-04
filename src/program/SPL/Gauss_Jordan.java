@@ -1,5 +1,7 @@
 package program.SPL;
 
+import java.text.DecimalFormat;
+
 import program.ADT.Matrix;
 import program.ADT.IO.Output;
 import program.Util.Settings;
@@ -7,7 +9,6 @@ import program.Util.Settings;
 public class Gauss_Jordan {
     public static void OBE(Matrix m) {
         Gauss.OBE(m);
-        Output.displayMatrix(m);
         for (int i = m.row - 1; i >= 0; i--) {
             int pivot = i;
             for (int j = 0; j < m.col - 1; j++) {
@@ -37,9 +38,11 @@ public class Gauss_Jordan {
     }
 
     public static void Solusi(Matrix m) {
+        DecimalFormat df = new DecimalFormat("#.####");
         Settings.clearScreen();
         System.out.println("Sistem Persamaan Linier dengan Metode Gauss-Jordan");
         OBE(m);
+        Output.displayMatrix(m);
         System.out.println();
         boolean solusiBanyak = true;
         for (int i = 0; i < m.col; i++) {
@@ -57,11 +60,11 @@ public class Gauss_Jordan {
                 Matrix mx = X(m);
                 for (int i = 0; i < mx.col; i++) {
                     if (i == mx.col - 1) {
-                        output += "x" + (i + 1) + ": " + String.format("%.4f", mx.elmt[0][i]);
-                        System.out.print("x" + (i + 1) + ": " + String.format("%.4f", mx.elmt[0][i]));
+                        output += "x" + (i + 1) + ": " + df.format(mx.elmt[0][i]);
+                        System.out.print("x" + (i + 1) + ": " + df.format(mx.elmt[0][i]));
                     } else {
-                        output += "x" + (i + 1) + ": " + String.format("%.4f", mx.elmt[0][i]) + ", ";
-                        System.out.print("x" + (i + 1) + ": " + String.format("%.4f", mx.elmt[0][i]) + ", ");
+                        output += "x" + (i + 1) + ": " + df.format(mx.elmt[0][i]) + ", ";
+                        System.out.print("x" + (i + 1) + ": " + df.format(mx.elmt[0][i]) + ", ");
                     }
                 }
             }

@@ -1,10 +1,13 @@
 package program.SPL;
 
+import java.text.DecimalFormat;
+
 import program.ADT.Matrix;
 import program.ADT.IO.Output;
 import program.ADT.primitives.Determinan;
 import program.ADT.primitives.OperasiAritmatika;
 import program.ADT.primitives.OperasiIdentitas;
+import program.Util.Settings;
 
 public class Invers {
     public static void Output(Matrix m, int pil) {
@@ -130,13 +133,17 @@ public class Invers {
         return mSum2;
     }
 
-    // public static void tes() {
-    // Matrix m = InputTerminal.Augmented();
-    // m = InversA(m);
-    // Output.displayMatrix(m);
-    // }
-
-    public static Matrix Solusi(Matrix m) {
+    public static void Solusi(Matrix m) {
+        Settings.clearScreen();
+        DecimalFormat df = new DecimalFormat("#.####");
+        System.out.println("---Sistem Persamaan Linier dengan Metode Matriks Balikan---");
+        System.out.println();
+        String output = "";
+        if (m.row != m.col - 1) {
+            output += "Jumlah persamaan harus sama dengan jumlah variabel!";
+            System.out.println("Jumlah persamaan harus sama dengan jumlah variabel!");
+            Output.Save(output);
+        }
         int i;
         Matrix mInv = Invers.InversA(m);
         Matrix mSum = Matrix.createMatrix(m.row, 1);
@@ -145,7 +152,16 @@ public class Invers {
             mB.elmt[i][0] = m.elmt[i][m.col - 1];
         }
         mSum = OperasiAritmatika.Perkalian(mInv, mB);
-        return mSum;
-
+        for (i = 0; i < mSum.row; i++) {
+            if (i == mSum.row - 1) {
+                output += "x" + (i + 1) + ": " + df.format(mSum.elmt[i][0]);
+                System.out.print("x" + (i + 1) + ": " + df.format(mSum.elmt[i][0]));
+            } else {
+                output += "x" + (i + 1) + ": " + df.format(mSum.elmt[i][0]) + ", ";
+                System.out.print("x" + (i + 1) + ": " + df.format(mSum.elmt[i][0]) + ", ");
+            }
+        }
+        System.out.println();
+        Output.Save(output);
     }
 }
