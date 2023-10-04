@@ -2,37 +2,55 @@ package program.SPL;
 
 import program.ADT.Matrix;
 import program.ADT.IO.Output;
+import program.ADT.primitives.OperasiIdentitas;
 import program.Util.Settings;
 
 public class Gauss {
+    public static boolean IsNol(Matrix m, int idx) {
+        for (int i = 0; i < m.col; i++) {
+            if (m.elmt[idx][i] != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void OBE(Matrix m) {
+        int pivot = 0;
         for (int i = 0; i < m.row; i++) {
-            // Find pivot row
-            int pivotRow = i;
-            for (int j = i + 1; j < m.row; j++) {
-                if (Math.abs(m.elmt[j][i]) > Math.abs(m.elmt[pivotRow][i])) {
-                    pivotRow = j;
+            if (pivot == m.col - 1) {
+                break;
+            }
+            if (IsNol(m, i) && i != m.row - 1) {
+                OperasiIdentitas.TukerRow(m, i, i + 1);
+            } else if (m.elmt[i][pivot] == 0 && i != m.row - 1) {
+                int temprow = i + 1;
+                while (temprow < m.row) {
+                    if (m.elmt[temprow][pivot] != 0) {
+                        OperasiIdentitas.TukerRow(m, i, temprow);
+                        break;
+                    }
+                    temprow++;
+                }
+            }
+            while (m.elmt[i][pivot] == 0 && pivot < m.col - 1) {
+                pivot++;
+            }
+            if (m.elmt[i][pivot] != 1 && m.elmt[i][pivot] != 0) {
+                double temp = m.elmt[i][pivot];
+                for (int j = pivot; j < m.col; j++) {
+                    m.elmt[i][j] /= temp;
+                }
+            }
+            if (i != m.row - 1) {
+                for (int j = i + 1; j < m.row; j++) {
+                    double temp = m.elmt[j][pivot];
+                    for (int k = pivot; k < m.col; k++) {
+                        m.elmt[j][k] = m.elmt[j][k] - (temp * m.elmt[i][k]);
+                    }
                 }
             }
 
-            // Swap rows
-            double[] temp = m.elmt[i];
-            m.elmt[i] = m.elmt[pivotRow];
-            m.elmt[pivotRow] = temp;
-
-            if (m.elmt[i][i] != 1 && m.elmt[i][i] != 0) {
-                double temps = m.elmt[i][i];
-                for (int j = i; j < m.col; j++) {
-                    m.elmt[i][j] /= temps;
-                }
-            }
-            // Eliminate
-            for (int j = i + 1; j < m.row; j++) {
-                double factor = m.elmt[j][i] / m.elmt[i][i];
-                for (int k = i; k < m.col; k++) {
-                    m.elmt[j][k] -= factor * m.elmt[i][k];
-                }
-            }
         }
     }
 

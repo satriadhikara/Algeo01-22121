@@ -72,6 +72,31 @@ public class Terminal {
         return m;
     }
 
+    public static Matrix Bicubic() {
+        System.out.println("Silahkan input");
+        System.out.println("    //Contoh");
+        System.out.println("1 2 3 4");
+        System.out.println("5 6 7 8");
+        System.out.println("9 10 11 12");
+        System.out.println("13 14 15 16");
+        System.out.println("0.5 0.5   // X taksiran");
+        System.out.println("--------------------");
+
+        Matrix m = Matrix.createMatrix(5, 4);
+        int i, j;
+        for (i = 0; i < m.row - 1; i++) {
+            for (j = 0; j < m.col; j++) {
+                double temp = scan.nextDouble();
+                m.elmt[i][j] = temp;
+            }
+        }
+        double temp = scan.nextDouble();
+        m.elmt[i][0] = temp;
+        temp = scan.nextDouble();
+        m.elmt[i][1] = temp;
+        return m;
+    }
+
     public static Matrix Regresi() {
         int n, s, i, j, k;
 

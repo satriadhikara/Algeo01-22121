@@ -3,16 +3,18 @@ package program.ADT.IO;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 import program.ADT.Matrix;
 
 public class Output {
     public static void displayMatrix(Matrix m) {
+        DecimalFormat df = new DecimalFormat("#.####");
         int i, j;
         for (i = 0; i < m.row; i++) {
             for (j = 0; j < m.col; j++) {
-                System.out.print(m.elmt[i][j] + " ");
+                System.out.print(df.format(m.elmt[i][j]) + " ");
             }
             System.out.println();
         }

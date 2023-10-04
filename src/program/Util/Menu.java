@@ -5,9 +5,7 @@ import java.util.Scanner;
 import program.ADT.Matrix;
 import program.ADT.IO.*;
 import program.ADT.primitives.Determinan;
-import program.Interpolasi.Bicubic;
-import program.Interpolasi.Polinom;
-import program.Interpolasi.Regresi;
+import program.Interpolasi.*;
 import program.SPL.*;
 
 public class Menu {
@@ -43,24 +41,26 @@ public class Menu {
             pilihan = scan.nextInt();
             switch (pilihan) {
                 case 1:
-                    Menu.SubMenu("SPL");
+                    SubMenu("SPL");
                     break;
                 case 2:
                     SubMenu("Determinan");
                     break;
                 case 3:
-                    Menu.SubMenu("Balikan");
+                    SubMenu("Balikan");
                     break;
                 case 4:
-                    Menu.SubMenu("Interpolasi");
+                    SubMenu("Interpolasi");
                     break;
                 case 5:
-                    Menu.SubMenu("Bicubic");
+                    SubMenu("Bicubic");
                     break;
                 case 6:
+                    SubMenu("Regresi");
                     break;
                 case 7:
                     System.out.println("Keluar dari program...");
+                    scan.close();
                     System.exit(0);
                     break;
                 default:
@@ -248,12 +248,21 @@ public class Menu {
                 Back();
                 break;
             case "Bicubic":
+                pilInput = Input();
                 Settings.clearScreen();
                 System.out.println("---Bikubik Spline Interpolasi---");
-                m = Terminal.Square();
-                double x = scan.nextInt();
-                double y = scan.nextInt();
-                System.out.println(Bicubic.bicubic(m, x, y));
+                if (pilInput == 1) {
+                    m = FileTXT.Bicubic();
+                } else {
+                    m = Terminal.Bicubic();
+                }
+                System.out.println();
+                String output = "f(" + m.elmt[m.row - 1][0] + "," + m.elmt[m.row - 1][1] + ") = "
+                        + Bicubic.bicubic(m, m.elmt[m.row - 1][0], m.elmt[m.row - 1][1]);
+                System.out.println("f(" + m.elmt[m.row - 1][0] + "," + m.elmt[m.row - 1][1] + ") = "
+                        + Bicubic.bicubic(m, m.elmt[m.row - 1][0], m.elmt[m.row - 1][1]));
+                System.out.println();
+                Output.Save(output);
                 scan.nextLine();
                 Back();
                 break;

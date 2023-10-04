@@ -115,4 +115,36 @@ public class FileTXT {
             return null;
         }
     }
+
+    public static Matrix Bicubic() {
+        try {
+            int row = 5, col = 4;
+            Scanner scan = new Scanner(System.in);
+            System.out.print("Masukkan nama file (.txt): ");
+            String namaFile = scan.nextLine();
+            File file = new File("test\\" + namaFile + ".txt");
+            Scanner fileReader = new Scanner(file);
+
+            Matrix m = Matrix.createMatrix(row, col);
+            int i = 0;
+            while (fileReader.hasNextLine()) {
+                String lines = fileReader.nextLine();
+                String[] line = lines.split(" ");
+                if (line.length == 2) {
+                    m.elmt[i][0] = Double.parseDouble(line[0]);
+                    m.elmt[i][1] = Double.parseDouble(line[1]);
+                } else {
+                    for (int j = 0; j < m.col; j++) {
+                        m.elmt[i][j] = Double.parseDouble(line[j]);
+                    }
+                }
+                i++;
+            }
+            fileReader.close();
+            return m;
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
 }
