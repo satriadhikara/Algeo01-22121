@@ -2,11 +2,13 @@
 
 ## Anggota
 
-1. 13522121 Jonathan Imanuel Saragih
+1. 13522121 Jonathan Emmanuel Saragih
 2. 13522125 Satriadhikara Panji Yudhistira
 3. 13522128 Mohammad Andhika Fadillah
 
 ## Deskripsi Program
+
+Program kalkulator matriks untuk menyelesaikan permasalahan dalam bentuk matriks dengan metode yang diajarkan dalam mata kuliah Aljabar Linier dan Geometri.
 
 ## Struktur Program
 
