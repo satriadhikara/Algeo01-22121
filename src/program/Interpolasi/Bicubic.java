@@ -16,21 +16,25 @@ public class Bicubic {
         while (idxY < 16) {
             for (x = 0; x < 2; x++) {
                 idxX = 0;
-                f
-                or (y = 0; y < 2; y++) {
+                for (y = 0; y < 2; y++) {
                     for (i = 0; i < 4; i++) {
                         for (j = 0; j < 4; j++) {
                             if (idxY < 4) {
-                                matrix.elmt[idxY][idxX] = Math.pow(x, i) * Math.pow(y, j); //Melakukan operasi matematika
+                                matrix.elmt[idxY][idxX] = Math.pow(x, i) * Math.pow(y, j); // Melakukan operasi
+                                                                                           // matematika
                             } else if (idxY < 8) {
                                 if (j == 0) {
                                     matrix.elmt[idxY][idxX] = 0;
                                 } else {
-                                    matrix.elmt[idxY][idxX] = j * Math.pow(x, i) * Math.pow(y, j - 1); //Melakukan operasi matematika
+                                    matrix.elmt[idxY][idxX] = j * Math.pow(x, i) * Math.pow(y, j - 1); // Melakukan
+                                                                                                       // operasi
+                                                                                                       // matematika
                                 }
                             } else if (idxY < 12) {
                                 if (i != 0) {
-                                    matrix.elmt[idxY][idxX] = i * Math.pow(x, i - 1) * Math.pow(y, j); //Melakukan operasi matematika
+                                    matrix.elmt[idxY][idxX] = i * Math.pow(x, i - 1) * Math.pow(y, j); // Melakukan
+                                                                                                       // operasi
+                                                                                                       // matematika
                                 } else {
                                     matrix.elmt[idxY][idxX] = 0;
                                 }
@@ -50,11 +54,11 @@ public class Bicubic {
             }
         }
         matrix = Invers.InversA(matrix);
-        Matrix nilai = Matrix.createMatrix(16, 1); //Membuat matrix 16 x 16 untuk mencari nilai
+        Matrix nilai = Matrix.createMatrix(16, 1); // Membuat matrix 16 x 16 untuk mencari nilai
         int idx = 0;
         for (i = 0; i < 4; i++) {
             for (j = 0; j < 4; j++) {
-                nilai.elmt[idx][0] = input.elmt[i][j]; //Mengisi matrix kosong
+                nilai.elmt[idx][0] = input.elmt[i][j]; // Mengisi matrix kosong
                 idx++;
             }
         }
