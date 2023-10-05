@@ -44,35 +44,46 @@ public class Gauss_Jordan {
         OBE(m);
         Output.displayMatrix(m);
         System.out.println();
-        boolean solusiBanyak = true;
-        for (int i = 0; i < m.col; i++) {
+        boolean solusiBanyak = false, tidakSolusi = true;
+        for (int i = 0; i < m.col - 1; i++) {
             if (m.elmt[m.row - 1][i] != 0) {
-                solusiBanyak = false;
+                tidakSolusi = false;
                 break;
             }
         }
+        if (m.elmt[m.row - 1][m.col - 1] == 0) {
+            tidakSolusi = false;
+        }
+        for (int i = 0; i < m.row; i++) {
+            if (m.elmt[i][i] != 1) {
+                solusiBanyak = true;
+                break;
+            }
+        }
+        if (m.row != m.col - 1) {
+            solusiBanyak = true;
+        }
         String output = "";
-        if (!solusiBanyak) {
-            if (m.elmt[m.row - 1][m.col - 2] == 0) {
-                output += "SPL tersebut tidak mempunyai solusi";
-                System.out.println("SPL tersebut tidak mempunyai solusi");
-            } else {
-                Matrix mx = X(m);
-                for (int i = 0; i < mx.col; i++) {
-                    if (i == mx.col - 1) {
-                        output += "x" + (i + 1) + ": " + df.format(mx.elmt[0][i]);
-                        System.out.print("x" + (i + 1) + ": " + df.format(mx.elmt[0][i]));
-                    } else {
-                        output += "x" + (i + 1) + ": " + df.format(mx.elmt[0][i]) + ", ";
-                        System.out.print("x" + (i + 1) + ": " + df.format(mx.elmt[0][i]) + ", ");
-                    }
+        if (tidakSolusi) {
+            output += "SPL tidak mempunyai solusi";
+            System.out.println("SPL tidak mempunyai solusi");
+            System.out.println();
+            Output.Save(output);
+        } else if (!solusiBanyak) {
+            Matrix mx = X(m);
+            for (int i = 0; i < mx.col; i++) {
+                if (i == mx.col - 1) {
+                    output += "x" + (i + 1) + ": " + df.format(mx.elmt[0][i]);
+                    System.out.print("x" + (i + 1) + ": " + df.format(mx.elmt[0][i]));
+                } else {
+                    output += "x" + (i + 1) + ": " + df.format(mx.elmt[0][i]) + ", ";
+                    System.out.print("x" + (i + 1) + ": " + df.format(mx.elmt[0][i]) + ", ");
                 }
             }
+            System.out.println();
+            Output.Save(output);
         } else {
-            output += "SPL tersebut mempunyai banyak solusi";
-            System.out.println("SPL tersebut mempunyai banyak solusi");
+            Parametrik.Solusi(m);
         }
-        System.out.println();
-        Output.Save(output);
     }
 }

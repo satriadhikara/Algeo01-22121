@@ -1,6 +1,5 @@
 package program.SPL;
 
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import program.ADT.Matrix;
 import program.ADT.IO.Output;
@@ -83,16 +82,15 @@ public class Parametrik {
             idxarrhasil++;
         }
         String output = "";
-        DecimalFormat df = new DecimalFormat("#.####");
         for (int i = 0; i < arrhasil.length; i++) {
-            if (arrhasil[i] != "") {
+            if (arrhasil[i] != "" && arrhasil[i] != null) {
                 if (i == arrhasil.length - 1) {
-                    output += df.format(arrhasil[i]);
-                    System.out.print(df.format(arrhasil[i]));
+                    output += arrhasil[i];
+                    System.out.print(arrhasil[i]);
 
                 } else {
-                    output += df.format(arrhasil[i]) + ", ";
-                    System.out.print(df.format(arrhasil[i]) + ", ");
+                    output += arrhasil[i] + ", ";
+                    System.out.print(arrhasil[i] + ", ");
                 }
             }
         }

@@ -67,7 +67,16 @@ public class Gauss {
         Output.displayMatrix(m);
         System.out.println();
         String output = "";
-        boolean solusiBanyak = false;
+        boolean solusiBanyak = false, tidakSolusi = true;
+        for (int i = 0; i < m.col - 1; i++) {
+            if (m.elmt[m.row - 1][i] != 0) {
+                tidakSolusi = false;
+                break;
+            }
+        }
+        if (m.elmt[m.row - 1][m.col - 1] == 0) {
+            tidakSolusi = false;
+        }
         for (int i = 0; i < m.row; i++) {
             if (m.elmt[i][i] != 1) {
                 solusiBanyak = true;
@@ -77,21 +86,22 @@ public class Gauss {
         if (m.row != m.col - 1) {
             solusiBanyak = true;
         }
-        if (!solusiBanyak) {
-            if (m.elmt[m.row - 1][m.col - 2] == 0) {
-                output += "SPL tidak mempunyai solusi";
-                System.out.println("SPL tidak mempunyai solusi");
-            } else {
-                Matrix mx = X(m);
-                for (int i = 0; i < mx.col; i++) {
-                    if (i == mx.col - 1) {
-                        output += "x" + (i + 1) + ": " + df.format(mx.elmt[0][i]);
-                        System.out.print("x" + (i + 1) + ": " + df.format(mx.elmt[0][i]));
-                    } else {
-                        output += "x" + (i + 1) + ": " + df.format(mx.elmt[0][i]) + ", ";
-                        System.out.print("x" + (i + 1) + ": " + df.format(mx.elmt[0][i]) + ", ");
-                    }
+        if (tidakSolusi) {
+            output += "SPL tidak mempunyai solusi";
+            System.out.println("SPL tidak mempunyai solusi");
+            System.out.println();
+            Output.Save(output);
+        } else if (!solusiBanyak) {
+            Matrix mx = X(m);
+            for (int i = 0; i < mx.col; i++) {
+                if (i == mx.col - 1) {
+                    output += "x" + (i + 1) + ": " + df.format(mx.elmt[0][i]);
+                    System.out.print("x" + (i + 1) + ": " + df.format(mx.elmt[0][i]));
+                } else {
+                    output += "x" + (i + 1) + ": " + df.format(mx.elmt[0][i]) + ", ";
+                    System.out.print("x" + (i + 1) + ": " + df.format(mx.elmt[0][i]) + ", ");
                 }
+
             }
             System.out.println();
             Output.Save(output);
