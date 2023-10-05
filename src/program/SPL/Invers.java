@@ -91,21 +91,33 @@ public class Invers {
 
         for (i = 0; i < m.row; i++) {
             for (j = m.row; j < mSum.col; j++) {
-                if (i + 3 == j) {
+                if (i + (m.row) == j) {
                     mSum.elmt[i][j] = 1;
                 } else {
                     mSum.elmt[i][j] = 0;
                 }
             }
         }
-
         for (i = 0; i < mSum.row; i++) {
+            if (OperasiIdentitas.IsNol(mSum, i) && i != mSum.row - 1) {
+                OperasiIdentitas.TukerRow(mSum, i, i + 1);
+            } else if (mSum.elmt[i][i] == 0 && i != mSum.row - 1) {
+                int temprow = i + 1;
+                while (temprow < mSum.row) {
+                    if (mSum.elmt[temprow][i] != 0) {
+                        OperasiIdentitas.TukerRow(mSum, i, temprow);
+                        break;
+                    }
+                    temprow++;
+                }
+            }
             if (mSum.elmt[i][i] != 1 && mSum.elmt[i][i] != 0) {
                 double temp = mSum.elmt[i][i];
                 for (j = i; j < mSum.col; j++) {
                     mSum.elmt[i][j] /= temp;
                 }
             }
+
             if (i != mSum.row - 1) {
                 for (j = i + 1; j < mSum.row; j++) {
                     double temp = mSum.elmt[j][i];
@@ -115,7 +127,6 @@ public class Invers {
                 }
             }
         }
-
         for (i = mSum.row - 1; i >= 0; i--) {
             for (j = i - 1; j >= 0; j--) {
                 double temp = mSum.elmt[j][i];

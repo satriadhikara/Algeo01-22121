@@ -258,9 +258,9 @@ public class Menu {
                 System.out.println("---Bikubik Spline Interpolasi---");
                 System.out.println();
                 String output = "f(" + m.elmt[m.row - 1][0] + "," + m.elmt[m.row - 1][1] + ") = "
-                        + Bicubic.bicubic(m, m.elmt[m.row - 1][0], m.elmt[m.row - 1][1]);
+                        + Bicubic.BicubicSpline(m);
                 System.out.println("f(" + m.elmt[m.row - 1][0] + "," + m.elmt[m.row - 1][1] + ") = "
-                        + Bicubic.bicubic(m, m.elmt[m.row - 1][0], m.elmt[m.row - 1][1]));
+                        + Bicubic.BicubicSpline(m));
                 System.out.println();
                 Output.Save(output);
                 scan.nextLine();
