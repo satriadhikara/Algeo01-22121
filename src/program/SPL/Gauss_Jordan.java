@@ -4,25 +4,40 @@ import java.text.DecimalFormat;
 
 import program.ADT.Matrix;
 import program.ADT.IO.Output;
+import program.ADT.primitives.OperasiIdentitas;
 import program.Util.Settings;
 
 public class Gauss_Jordan {
     public static void OBE(Matrix m) {
         Gauss.OBE(m);
-        for (int i = m.row - 1; i >= 0; i--) {
-            int pivot = i;
-            for (int j = 0; j < m.col - 1; j++) {
-                if (m.elmt[i][j] == 1) {
-                    pivot = j;
-                }
-            }
-            for (int j = i - 1; j >= 0; j--) {
-                double temp = m.elmt[j][pivot];
-                for (int k = pivot; k < m.col; k++) {
-                    m.elmt[j][k] -= (temp * m.elmt[i][k]);
-                }
+        boolean tidakSolusi = true;
+        for (int i = 0; i < m.col - 1; i++) {
+            if (m.elmt[m.row - 1][i] != 0) {
+                tidakSolusi = false;
+                break;
             }
         }
+        if (m.elmt[m.row - 1][m.col - 1] == 0) {
+            tidakSolusi = false;
+        }
+        if (!tidakSolusi){
+            for (int i = m.row - 1; i >= 0; i--) {
+                if (!OperasiIdentitas.IsNol(m, i)){
+                    int pivot = i;
+                    for (int j = 0; j < m.col - 1; j++) {
+                        if (m.elmt[i][j] == 1) {
+                            pivot = j;
+                        }
+                    }
+                    for (int j = i - 1; j >= 0; j--) {
+                        double temp = m.elmt[j][pivot];
+                        for (int k = pivot; k < m.col; k++) {
+                            m.elmt[j][k] -= (temp * m.elmt[i][k]);
+                        }
+                    }
+                }
+            }
+        } 
     }
 
     public static Matrix X(Matrix m) {

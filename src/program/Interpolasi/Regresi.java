@@ -54,11 +54,11 @@ public class Regresi {
         }
         double sum = 0;
         int j;
-        for (j = 0; j < m.col - 1; j++) {
+        for (j = 0; j < m.col; j++) {
             if (j == 0) {
                 sum += mb.elmt[0][j];
             } else {
-                sum += mb.elmt[0][j] * m.elmt[m.row - 1][j];
+                sum += mb.elmt[0][j] * m.elmt[m.row - 1][j - 1];
             }
         }
         int l;
@@ -81,3 +81,10 @@ public class Regresi {
     }
 
 }
+
+
+
+
+
+
+   

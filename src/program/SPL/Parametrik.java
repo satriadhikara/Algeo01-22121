@@ -29,7 +29,7 @@ public class Parametrik {
                 hasilpar = "";
             }
         }
-        String[] arrhasil = new String[satu + 1 + arrhasilpar.length];
+        String[] arrhasil = new String[satu + 2 + arrhasilpar.length];
         int idxarrhasil = 0;
         int temp = 0;
         int cek = 0;

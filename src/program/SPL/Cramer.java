@@ -38,19 +38,33 @@ public class Cramer {
             System.out.println("Jumlah persamaan harus sama dengan jumlah variabel!");
             Output.Save(output);
         }
-        m = Perhitungan(m);
-        int i;
-        for (i = 0; i < m.row; i++) {
-            if (i == m.row - 1) {
-                output += "x" + (i + 1) + ": " + df.format(m.elmt[i][0]);
-                System.out.print("x" + (i + 1) + ": " + df.format(m.elmt[i][0]));
-            } else {
-                output += "x" + (i + 1) + ": " + df.format(m.elmt[i][0]) + ", ";
-                System.out.print("x" + (i + 1) + ": " + df.format(m.elmt[i][0]) + ", ");
+        else {
+            double D = Determinan.DeterminanCofactor(m);
+            if (D == 0){
+                output += "SPL tidak mempunyai solusi";
+                System.out.println("SPL tidak mempunyai solusi");
+                System.out.println();
+                Output.Save(output);
+            }
+            else{
+                m = Perhitungan(m);
+            
+                int i;
+                for (i = 0; i < m.row; i++) {
+                    if (i == m.row - 1) {
+                        output += "x" + (i + 1) + ": " + df.format(m.elmt[i][0]);
+                        System.out.print("x" + (i + 1) + ": " + df.format(m.elmt[i][0]));
+                    } else {
+                        output += "x" + (i + 1) + ": " + df.format(m.elmt[i][0]) + ", ";
+                        System.out.print("x" + (i + 1) + ": " + df.format(m.elmt[i][0]) + ", ");
+                    }
+                }
+                System.out.println();
+                Output.Save(output);
             }
         }
-        System.out.println();
-        Output.Save(output);
+        
+        
     }
 
 }
