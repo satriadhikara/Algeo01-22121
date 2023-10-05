@@ -16,7 +16,7 @@ public class Regresi {
             for (j = 0; j < mfuc.col; j++) {
                 if (i == 0) {
                     if (j == 0) {
-                        mfuc.elmt[i][j] = m.row;
+                        mfuc.elmt[i][j] = m.row - 1;
                     } else {
                         mfuc.elmt[i][j] = OperasiAritmatika.sigmaRow(m1, m.row, i, j);
                     }
@@ -58,19 +58,19 @@ public class Regresi {
             if (j == 0) {
                 sum += mb.elmt[0][j];
             } else {
-                sum += mb.elmt[0][j] * m.elmt[m.col - 1][j];
+                sum += mb.elmt[0][j] * m.elmt[m.row - 1][j];
             }
         }
         int l;
         output += " f(";
         System.out.print(" f(");
         for (l = 0; l < m.col - 1; l++) {
-            if (l != m.col - 1) {
-                output += m.elmt[m.col - 1][l] + ",";
-                System.out.print(m.elmt[m.col - 1][l] + ",");
+            if (l != m.col - 2) {
+                output += m.elmt[m.row - 1][l] + ",";
+                System.out.print(m.elmt[m.row -1][l] + ",");
             } else {
-                output += m.elmt[m.col - 1][l];
-                System.out.print(m.elmt[m.col - 1][l]);
+                output += m.elmt[m.row - 1][l];
+                System.out.print(m.elmt[m.row -1][l]);
             }
         }
         output += ") = " + String.format("%.4f", sum);

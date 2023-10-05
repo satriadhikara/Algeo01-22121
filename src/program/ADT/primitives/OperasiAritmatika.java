@@ -66,19 +66,19 @@ public class OperasiAritmatika {
     }
 
     public static double sigmaRow(Matrix m, int s, int rowReg, int colReg) {
-        double sigmaRow; // Jumlah nilai x di baris
-        sigmaRow = 0;
+        double countRow; // Jumlah nilai x di baris
+        countRow = 0;
         int i;
         
-        for (i = 0; i < s; i++) {
+        for (i = 0; i < s - 1; i++) {
             if (rowReg == 0) {
-                sigmaRow += m.elmt[colReg-1][i]; // Mendapatkan sigma x1i
+                countRow += m.elmt[colReg-1][i]; // Mendapatkan sigma x1i
             } else {
-                sigmaRow += m.elmt[rowReg-1][i]*m.elmt[colReg-1][i];
+                countRow += m.elmt[rowReg-1][i]*m.elmt[colReg-1][i];
             }
             
         }
-        return sigmaRow;
+        return countRow;
     }
 
 
